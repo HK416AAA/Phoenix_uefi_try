@@ -29,6 +29,7 @@ on:
     paths:
       - "platforms/**"
       - "config/tas.toml"
+      - "scripts/fetch-uefi.sh"
       - ".github/workflows/build-uefi.yml"
 
 permissions:
@@ -60,6 +61,11 @@ jobs:
           key: mu-${{ steps.in.outputs.mu_ref }}-${{ hashFiles('scripts/fetch-uefi.sh') }}
           restore-keys: |
             mu-${{ steps.in.outputs.mu_ref }}-
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h
 
       - name: Fetch Mu-Silicium
         run: bash scripts/fetch-uefi.sh "$MU_DIR" "${{ steps.in.outputs.mu_ref }}"
