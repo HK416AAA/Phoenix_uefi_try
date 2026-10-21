@@ -55,9 +55,30 @@ display: [LCD_KIT/I] lcd_kit_panel_on: fb0
 - 分辨率 1080×2340，panel 为 `lcd_kit_taurus_samsung_ea8079`
 - bootloader 在 239525 ms 时执行过 `watchdog: Enable watchdog start`
 
-## 5. 下一步
+## 6. 执行证明（2026-10-22）
 
-既然 ABL/HHEE 已经跳转，先验证“代码到底有没有执行”：
+`boot-carrier-pstore.img`：`code0` → payload @ `0x31e0000`（写 pstore 标记）→ 跳回原厂 `stext`。
+启动 Android 后 `/sys/fs/pstore/console-ramoops-0` 第一行：
 
-- **reset-only stub**：只发 PSCI `SYSTEM_RESET`（`0x84000009`）。设备若在 1 秒内自己重启，说明 stub 执行了；若一直停在解锁警告，说明 HHEE 没有把控制权交给非 Linux 镜像。
-- **write+reset stub**：先写 `0x36500000` 和 `0x36ea3f80`，再发 PSCI reset。出现颜色闪烁后重启 = 写屏成功；只重启不出色 = 写屏成功但 DPU 没扫描这两个缓冲；不重启 = 写入触发异常。
+```
+TAS-STEP1-PSTORE-OK
+```
+
+结论：
+
+- HHEE 执行 `code0`
+- 追加在 `image_size` 之后的 payload 不会被 BSS 清零
+- 写回 `stext` 后 Android 正常启动
+- 之前 reset 不生效是 **SMC** 的问题，不是入口问题
+- TAS 的 pstore console zone 在 `0x2f060000`（ramoops: record 0x20000 / console 0x80000 / pmsg 0x20000）
+
+参考 charlotte 的 HHEE 处理：`psci { method = "hvc"; }`、TVM 握手 HVC `0xC600108A`、
+HHEE 日志 HVC `0xC9000005`/`0xC9000006`、LPM3 watchdog `0x46`。
+
+## 7. 下一步
+
+- 确认 TAS 的 PSCI conduit：`/proc/device-tree/psci/method`（预期 `hvc`）
+- UEFI 入口 payload 必须先发 TVM 握手 HVC `0xC600108A`
+- PSCI 使用 HVC，不再用 SMC
+- 单核起步；LPM3 watchdog 需要喂，或把首轮启动控制在 24 秒内
+- 用 pstore / HHEE log 作为早期调试通道
