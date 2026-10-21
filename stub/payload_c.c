@@ -3,7 +3,8 @@
 
 #define PSTORE_BASE 0x2f060000UL
 #define PSTORE_SIG  0x43474244U
-#define FB_BASE     0x36500000UL
+#define FB_LCD      0x36500000UL
+#define FB_CANVAS   0x36ea3f80UL
 #define FB_PIXELS   (1080U * 2340U)
 
 static uint32_t woff;
@@ -53,9 +54,9 @@ static void hhee_tvm_enable(void)
                    "memory");
 }
 
-static void fb_fill(uint32_t color)
+static void fb_fill(uintptr_t base, uint32_t color)
 {
-    volatile uint32_t *p = (volatile uint32_t *)FB_BASE;
+    volatile uint32_t *p = (volatile uint32_t *)base;
 
     for (uint32_t i = 0; i < FB_PIXELS; i++)
         p[i] = color;
@@ -68,7 +69,9 @@ void payload_main(uint64_t dtb)
     pstore_mark("TAS-C-1\n");
     hhee_tvm_enable();
     pstore_mark("TAS-C-2\n");
-    fb_fill(0x00FF00FFU);
-    pstore_mark("TAS-C-3\n");
+    fb_fill(FB_LCD, 0xFFFFFFFFU);
+    pstore_mark("TAS-C-FB1\n");
+    fb_fill(FB_CANVAS, 0xFFFFFFFFU);
+    pstore_mark("TAS-C-FB2\n");
     pstore_mark("TAS-C-DONE\n");
 }
