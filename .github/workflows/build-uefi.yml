@@ -6,7 +6,7 @@ on:
       device:
         description: "Mu-Silicium codename (Resources/Configs/<device>.toml)"
         required: true
-        default: giulia
+        default: tas
       mu_ref:
         description: "Mu-Silicium git ref"
         required: true
@@ -24,6 +24,12 @@ on:
         description: "Run QEMU load smoke (not a hardware test)"
         type: boolean
         default: false
+  push:
+    branches: [main]
+    paths:
+      - "platforms/**"
+      - "config/tas.toml"
+      - ".github/workflows/build-uefi.yml"
 
 permissions:
   contents: read
@@ -42,7 +48,7 @@ jobs:
       - name: Resolve inputs
         id: in
         run: |
-          echo "device=${{ inputs.device || 'giulia' }}" >> "$GITHUB_OUTPUT"
+          echo "device=${{ inputs.device || 'tas' }}" >> "$GITHUB_OUTPUT"
           echo "mu_ref=${{ inputs.mu_ref || 'main' }}" >> "$GITHUB_OUTPUT"
           echo "mode=${{ inputs.mode || 'DEBUG' }}" >> "$GITHUB_OUTPUT"
           echo "model=${{ inputs.model || '0' }}" >> "$GITHUB_OUTPUT"
@@ -57,6 +63,13 @@ jobs:
 
       - name: Fetch Mu-Silicium
         run: bash scripts/fetch-uefi.sh "$MU_DIR" "${{ steps.in.outputs.mu_ref }}"
+
+      - name: Overlay tas package
+        run: |
+          mkdir -p Mu-Silicium/Platforms/Huawei
+          rm -rf Mu-Silicium/Platforms/Huawei/tasPkg
+          cp -r platforms/Huawei/tasPkg Mu-Silicium/Platforms/Huawei/
+          cp config/tas.toml Mu-Silicium/Resources/Configs/tas.toml
 
       - name: Check device exists
         working-directory: Mu-Silicium
@@ -105,7 +118,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: uefi-${{ inputs.device || 'giulia' }}-${{ inputs.mode || 'DEBUG' }}
+          name: uefi-${{ inputs.device || 'tas' }}-${{ inputs.mode || 'DEBUG' }}
           path: out
 
       - name: Install QEMU
