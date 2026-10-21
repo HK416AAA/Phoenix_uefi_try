@@ -39,6 +39,11 @@ jobs:
               -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
               -o "out/$name.bin" "$src"
           done
+          clang --target=aarch64-none-elf -ffreestanding -fno-builtin -fno-stack-protector \
+            -mgeneral-regs-only -O2 -c stub/payload_c.c -o out/payload_c.o
+          clang --target=aarch64-none-elf -nostdlib -fuse-ld=lld \
+            -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
+            -o out/payload-c.bin stub/payload_c_entry.S out/payload_c.o
           python3 - <<'PY'
           import struct
 
@@ -52,7 +57,7 @@ jobs:
               open(path, "wb").write(data)
               print(f"{name}: padded to {len(data)} bytes, image_size={target:#x}")
 
-          for name in ("payload-fb-wdt", "payload-pstore"):
+          for name in ("payload-fb-wdt", "payload-pstore", "payload-c"):
               path = f"out/{name}.bin"
               data = bytearray(open(path, "rb").read())
               target = 0x200000
@@ -61,7 +66,7 @@ jobs:
               open(path, "wb").write(data)
               print(f"{name}: padded to {len(data)} bytes (raw)")
           PY
-          for name in stub stub-reset payload-fb-wdt payload-pstore; do
+          for name in stub stub-reset payload-fb-wdt payload-pstore payload-c; do
             gzip -9 -c "out/$name.bin" > "out/$name.bin.gz"
           done
           python3 - <<'PY'
@@ -70,7 +75,7 @@ jobs:
               assert len(data) > 0x40, len(data)
               assert data[0x38:0x3C] == b"ARM\x64", data[0x38:0x3C]
               print(f"{name}: {len(data)} bytes, ARM64 magic ok")
-          for name in ("payload-fb-wdt", "payload-pstore"):
+          for name in ("payload-fb-wdt", "payload-pstore", "payload-c"):
               data = open(f"out/{name}.bin", "rb").read()
               assert len(data) == 0x200000, len(data)
               print(f"{name}: 2 MiB raw payload")
@@ -90,6 +95,8 @@ jobs:
             out/payload-fb-wdt.bin.gz
             out/payload-pstore.bin
             out/payload-pstore.bin.gz
+            out/payload-c.bin
+            out/payload-c.bin.gz
           if-no-files-found: error
 
       - name: Publish stubs to repo
@@ -99,9 +106,10 @@ jobs:
           cp out/stub-reset.bin.gz builds/stub-reset.bin.gz
           cp out/payload-fb-wdt.bin.gz builds/payload-fb-wdt.bin.gz
           cp out/payload-pstore.bin.gz builds/payload-pstore.bin.gz
+          cp out/payload-c.bin.gz builds/payload-c.bin.gz
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f builds/stub.bin.gz builds/stub-reset.bin.gz \
-            builds/payload-fb-wdt.bin.gz builds/payload-pstore.bin.gz
+            builds/payload-fb-wdt.bin.gz builds/payload-pstore.bin.gz builds/payload-c.bin.gz
           git commit -m "stub build ${GITHUB_RUN_NUMBER}" || echo "no changes"
           git push origin HEAD:main
