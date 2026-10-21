@@ -24,12 +24,6 @@ on:
         description: "Run QEMU load smoke (not a hardware test)"
         type: boolean
         default: false
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/build-uefi.yml"
-      - "scripts/**"
-      - "config/**"
 
 permissions:
   contents: read

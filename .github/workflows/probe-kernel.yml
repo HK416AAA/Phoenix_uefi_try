@@ -7,12 +7,6 @@ on:
         description: "Kernel git ref (branch, tag or SHA)"
         required: true
         default: "2f71c5e433024c76412bab655e6ff54b3e656ca8"
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/probe-kernel.yml"
-      - "scripts/probe-kernel-source.sh"
-      - "scripts/fetch-kernel.sh"
 
 permissions:
   contents: read
