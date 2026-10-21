@@ -34,6 +34,8 @@ def main() -> int:
     parser.add_argument("--no-gzip-check", action="store_true")
     parser.add_argument("--cmdline-append", default=None,
                         help="append to the v2 cmdline, e.g. log_buf_len=8M")
+    parser.add_argument("--keep-tail", action="store_true",
+                        help="preserve the original bytes after the DTBO (AVB footer/signature)")
     parser.add_argument("--pad-to", default=None,
                         help="pad output with zeros (default: stock file size, overwrites stale AVB tails)")
     args = parser.parse_args()
@@ -98,6 +100,14 @@ def main() -> int:
         print(f"FAIL: image is {len(out)} bytes, larger than --pad-to {pad_to}", file=sys.stderr)
         return 1
     out += b"\0" * (pad_to - len(out))
+
+    tail = raw[dtb_off + dtb_size:] if args.keep_tail else b""
+    if tail:
+        if len(tail) > len(out):
+            print(f"FAIL: tail is {len(tail)} bytes, larger than the image", file=sys.stderr)
+            return 1
+        out = out[:-len(tail)] + tail
+
     Path(args.out).write_bytes(out)
 
     new_dtb_off = page + align_up(len(kernel), page) + align_up(len(ramdisk), page)
@@ -111,6 +121,8 @@ def main() -> int:
     print(f"tags_addr   : {stock['tags_addr']:#x}")
     if stock.get("dtb_addr") is not None:
         print(f"dtb_addr    : {stock['dtb_addr']:#x} (unchanged)")
+    if tail:
+        print(f"tail        : preserved {len(tail)} bytes (AVB footer/signature)")
     return 0
 
 

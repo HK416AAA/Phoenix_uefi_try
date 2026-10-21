@@ -29,6 +29,18 @@ jobs:
           clang --target=aarch64-none-elf -nostdlib -fno-stack-protector -fuse-ld=lld \
             -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
             -o out/stub.bin stub/start.S
+          python3 - <<'PY'
+          import struct
+
+          path = "out/stub.bin"
+          data = bytearray(open(path, "rb").read())
+          target = 0x200000
+          if len(data) < target:
+              data += b"\0" * (target - len(data))
+          struct.pack_into("<Q", data, 16, target)  # image_size
+          open(path, "wb").write(data)
+          print(f"padded to {len(data)} bytes, image_size={target:#x}")
+          PY
           gzip -9 -c out/stub.bin > out/stub.bin.gz
           python3 - <<'PY'
           data = open("out/stub.bin", "rb").read()
