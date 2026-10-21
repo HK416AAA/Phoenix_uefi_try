@@ -1,0 +1,528 @@
+=== fetch-uefi.sh output ===
+==> clone attempt 1
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium'...
+Submodule 'Binaries' (https://github.com/Project-Silicium/Device-Binaries.git) registered for path 'Binaries'
+Submodule 'Common/Mu' (https://github.com/microsoft/mu_plus.git) registered for path 'Common/Mu'
+Submodule 'Common/Mu_OEM_Sample' (https://github.com/microsoft/mu_oem_sample.git) registered for path 'Common/Mu_OEM_Sample'
+Submodule 'Mu_Basecore' (https://github.com/microsoft/mu_basecore.git) registered for path 'Mu_Basecore'
+Submodule 'Silicium-ACPI' (https://github.com/Project-Silicium/Silicium-ACPI.git) registered for path 'Silicium-ACPI'
+Submodule 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl' (https://github.com/openssl/openssl.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Binaries'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu_OEM_Sample'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicium-ACPI'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore'...
+Submodule path 'Binaries': checked out 'a1501e0c2e642d6ac0d8f52c85af2a67b75a7799'
+From https://github.com/microsoft/mu_plus
+ * branch            b8d46c71610318e36a661819e1e3c0b8bdda413a -> FETCH_HEAD
+Submodule path 'Common/Mu': checked out 'b8d46c71610318e36a661819e1e3c0b8bdda413a'
+From https://github.com/microsoft/mu_oem_sample
+ * branch            b70b4b7bb02c43bf9db2172dfb3ed0457e2361d6 -> FETCH_HEAD
+Submodule path 'Common/Mu_OEM_Sample': checked out 'b70b4b7bb02c43bf9db2172dfb3ed0457e2361d6'
+From https://github.com/microsoft/mu_basecore
+ * branch            3c9c7b2e211e62d2a954ad760a36fe05adc43aa3 -> FETCH_HEAD
+Submodule path 'Mu_Basecore': checked out '3c9c7b2e211e62d2a954ad760a36fe05adc43aa3'
+Submodule 'BaseTools/Source/C/BrotliCompress/brotli' (https://github.com/google/brotli) registered for path 'Mu_Basecore/BaseTools/Source/C/BrotliCompress/brotli'
+Submodule 'MdeModulePkg/Library/BrotliCustomDecompressLib/brotli' (https://github.com/google/brotli) registered for path 'Mu_Basecore/MdeModulePkg/Library/BrotliCustomDecompressLib/brotli'
+Submodule 'MdeModulePkg/Universal/RegularExpressionDxe/oniguruma' (https://github.com/kkos/oniguruma) registered for path 'Mu_Basecore/MdeModulePkg/Universal/RegularExpressionDxe/oniguruma'
+Submodule 'MdePkg/Library/BaseFdtLib/libfdt' (https://github.com/devicetree-org/pylibfdt.git) registered for path 'Mu_Basecore/MdePkg/Library/BaseFdtLib/libfdt'
+Submodule 'MdePkg/Library/MipiSysTLib/mipisyst' (https://github.com/MIPI-Alliance/public-mipi-sys-t.git) registered for path 'Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst'
+Submodule 'SecurityPkg/DeviceSecurity/SpdmLib/libspdm' (https://github.com/DMTF/libspdm.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm'
+Submodule 'UnitTestFrameworkPkg/Library/CmockaLib/cmocka' (https://github.com/tianocore/edk2-cmocka.git) registered for path 'Mu_Basecore/UnitTestFrameworkPkg/Library/CmockaLib/cmocka'
+Submodule 'UnitTestFrameworkPkg/Library/GoogleTestLib/googletest' (https://github.com/google/googletest.git) registered for path 'Mu_Basecore/UnitTestFrameworkPkg/Library/GoogleTestLib/googletest'
+Submodule 'UnitTestFrameworkPkg/Library/SubhookLib/subhook' (https://github.com/tianocore/edk2-subhook.git) registered for path 'Mu_Basecore/UnitTestFrameworkPkg/Library/SubhookLib/subhook'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Source/C/BrotliCompress/brotli'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdePkg/Library/BaseFdtLib/libfdt'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdeModulePkg/Universal/RegularExpressionDxe/oniguruma'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdeModulePkg/Library/BrotliCustomDecompressLib/brotli'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/UnitTestFrameworkPkg/Library/CmockaLib/cmocka'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/UnitTestFrameworkPkg/Library/GoogleTestLib/googletest'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/UnitTestFrameworkPkg/Library/SubhookLib/subhook'...
+From https://github.com/google/brotli
+ * branch            e230f474b87134e8c6c85b630084c612057f253e -> FETCH_HEAD
+Submodule path 'Mu_Basecore/BaseTools/Source/C/BrotliCompress/brotli': checked out 'e230f474b87134e8c6c85b630084c612057f253e'
+From https://github.com/google/brotli
+ * branch            e230f474b87134e8c6c85b630084c612057f253e -> FETCH_HEAD
+Submodule path 'Mu_Basecore/MdeModulePkg/Library/BrotliCustomDecompressLib/brotli': checked out 'e230f474b87134e8c6c85b630084c612057f253e'
+From https://github.com/kkos/oniguruma
+ * branch            4ef89209a239c1aea328cf13c05a2807e5c146d1 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/MdeModulePkg/Universal/RegularExpressionDxe/oniguruma': checked out '4ef89209a239c1aea328cf13c05a2807e5c146d1'
+From https://github.com/devicetree-org/pylibfdt
+ * branch            cfff805481bdea27f900c32698171286542b8d3c -> FETCH_HEAD
+Submodule path 'Mu_Basecore/MdePkg/Library/BaseFdtLib/libfdt': checked out 'cfff805481bdea27f900c32698171286542b8d3c'
+From https://github.com/MIPI-Alliance/public-mipi-sys-t
+ * branch            370b5944c046bab043dd8b133727b2135af7747a -> FETCH_HEAD
+Submodule path 'Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst': checked out '370b5944c046bab043dd8b133727b2135af7747a'
+Submodule 'external/googletest' (https://github.com/google/googletest.git) registered for path 'Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst/external/googletest'
+Submodule 'external/pugixml' (https://github.com/zeux/pugixml.git) registered for path 'Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst/external/pugixml'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst/external/googletest'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst/external/pugixml'...
+From https://github.com/google/googletest
+ * branch            a6f06bf2fd3b832822cd4e9e554b7d47f32ec084 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst/external/googletest': checked out 'a6f06bf2fd3b832822cd4e9e554b7d47f32ec084'
+From https://github.com/zeux/pugixml
+ * branch            c53fdab93af76106b963216d85897614b996f8b6 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst/external/pugixml': checked out 'c53fdab93af76106b963216d85897614b996f8b6'
+From https://github.com/DMTF/libspdm
+ * branch            f55cf6d48ec69b4ac60a63903e9c6a2cb0fd155d -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm': checked out 'f55cf6d48ec69b4ac60a63903e9c6a2cb0fd155d'
+Submodule 'os_stub/mbedtlslib/mbedtls' (https://github.com/Mbed-TLS/mbedtls) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/mbedtlslib/mbedtls'
+Submodule 'os_stub/openssllib/openssl' (https://github.com/openssl/openssl) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl'
+Submodule 'unit_test/cmockalib/cmocka' (https://gitlab.com/cmocka/cmocka.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/unit_test/cmockalib/cmocka'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/mbedtlslib/mbedtls'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/unit_test/cmockalib/cmocka'...
+From https://github.com/Mbed-TLS/mbedtls
+ * branch            107ea89daaefb9867ea9121002fbbdf926780e98 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/mbedtlslib/mbedtls': checked out '107ea89daaefb9867ea9121002fbbdf926780e98'
+Submodule 'framework' (https://github.com/Mbed-TLS/mbedtls-framework) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/mbedtlslib/mbedtls/framework'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/mbedtlslib/mbedtls/framework'...
+From https://github.com/Mbed-TLS/mbedtls-framework
+ * branch            94599c0e3b5036e086446a51a3f79640f70f22f6 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/mbedtlslib/mbedtls/framework': checked out '94599c0e3b5036e086446a51a3f79640f70f22f6'
+From https://github.com/openssl/openssl
+ * branch            aea7aaf2abb04789f5868cbabec406ea43aa84bf -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl': checked out 'aea7aaf2abb04789f5868cbabec406ea43aa84bf'
+Submodule 'cloudflare-quiche' (https://github.com/cloudflare/quiche) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/cloudflare-quiche'
+Submodule 'fuzz/corpora' (https://github.com/openssl/fuzz-corpora) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/fuzz/corpora'
+Submodule 'gost-engine' (https://github.com/gost-engine/engine) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/gost-engine'
+Submodule 'krb5' (https://github.com/krb5/krb5) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/krb5'
+Submodule 'oqs-provider' (https://github.com/open-quantum-safe/oqs-provider.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/oqs-provider'
+Submodule 'pkcs11-provider' (https://github.com/latchset/pkcs11-provider.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider'
+Submodule 'pyca.cryptography' (https://github.com/pyca/cryptography.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pyca-cryptography'
+Submodule 'python-ecdsa' (https://github.com/tlsfuzzer/python-ecdsa) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/python-ecdsa'
+Submodule 'tlsfuzzer' (https://github.com/tlsfuzzer/tlsfuzzer) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlsfuzzer'
+Submodule 'tlslite-ng' (https://github.com/tlsfuzzer/tlslite-ng) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlslite-ng'
+Submodule 'wycheproof' (https://github.com/google/wycheproof) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/wycheproof'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/cloudflare-quiche'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/gost-engine'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/krb5'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/fuzz/corpora'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/oqs-provider'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/python-ecdsa'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pyca-cryptography'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlslite-ng'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlsfuzzer'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/wycheproof'...
+From https://github.com/cloudflare/quiche
+ * branch            7ab6a55cfe471267d61e4d28ba43d41defcd87e0 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/cloudflare-quiche': checked out '7ab6a55cfe471267d61e4d28ba43d41defcd87e0'
+Submodule 'boringssl' (https://github.com/google/boringssl.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/cloudflare-quiche/quiche/deps/boringssl'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/cloudflare-quiche/quiche/deps/boringssl'...
+From https://github.com/google/boringssl
+ * branch            f1c75347daa2ea81a941e953f2263e0a4d970c8d -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/cloudflare-quiche/quiche/deps/boringssl': checked out 'f1c75347daa2ea81a941e953f2263e0a4d970c8d'
+From https://github.com/openssl/fuzz-corpora
+ * branch              ce771805c094d098c25a218bc8e9f7344eccbc5a -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/fuzz/corpora': checked out 'ce771805c094d098c25a218bc8e9f7344eccbc5a'
+From https://github.com/gost-engine/engine
+ * branch            74b1f4fddbc2d6de969815b1992ddc1ae7c643fe -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/gost-engine': checked out '74b1f4fddbc2d6de969815b1992ddc1ae7c643fe'
+Submodule 'libprov' (https://github.com/provider-corner/libprov.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/gost-engine/libprov'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/gost-engine/libprov'...
+From https://github.com/provider-corner/libprov
+ * branch            0b445c73ae1e87577430c6884cdeeca1afa36dbd -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/gost-engine/libprov': checked out '0b445c73ae1e87577430c6884cdeeca1afa36dbd'
+From https://github.com/krb5/krb5
+ * branch            784c38f50e70a739400cdd3f2620bac2e2788e6c -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/krb5': checked out '784c38f50e70a739400cdd3f2620bac2e2788e6c'
+From https://github.com/open-quantum-safe/oqs-provider
+ * branch            7bc597c04b534ddea9b6654481deb31ded8e1bbc -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/oqs-provider': checked out '7bc597c04b534ddea9b6654481deb31ded8e1bbc'
+From https://github.com/latchset/pkcs11-provider
+ * branch            898b1079d95453dc5d0f378dd15a75b99252caf3 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider': checked out '898b1079d95453dc5d0f378dd15a75b99252caf3'
+Submodule 'python-ecdsa' (https://github.com/tlsfuzzer/python-ecdsa.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/python-ecdsa'
+Submodule 'tlsfuzzer' (https://github.com/tlsfuzzer/tlsfuzzer.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlsfuzzer'
+Submodule 'tlslite-ng' (https://github.com/tlsfuzzer/tlslite-ng.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlslite-ng'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/python-ecdsa'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlsfuzzer'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlslite-ng'...
+From https://github.com/tlsfuzzer/python-ecdsa
+ * branch            ea9666903c109a8e88a37eb1c60d4e98f01f0299 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/python-ecdsa': checked out 'ea9666903c109a8e88a37eb1c60d4e98f01f0299'
+From https://github.com/tlsfuzzer/tlsfuzzer
+ * branch            32fcb0d8e78fd9ffc4568d11ba5916936a46af8c -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlsfuzzer': checked out '32fcb0d8e78fd9ffc4568d11ba5916936a46af8c'
+From https://github.com/tlsfuzzer/tlslite-ng
+ * branch            4e16574d7c52f17c81c3f5e0aa547776a67fdf8e -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlslite-ng': checked out '4e16574d7c52f17c81c3f5e0aa547776a67fdf8e'
+From https://github.com/pyca/cryptography
+ * branch            7e33b0e7739d633c77b8c478620167f693ed13f4 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pyca-cryptography': checked out '7e33b0e7739d633c77b8c478620167f693ed13f4'
+From https://github.com/tlsfuzzer/python-ecdsa
+ * branch            4096fa01715929e08b97e73f3173aee9d57f2a3f -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/python-ecdsa': checked out '4096fa01715929e08b97e73f3173aee9d57f2a3f'
+From https://github.com/tlsfuzzer/tlsfuzzer
+ * branch            61f45d9701294fd87ef92d2a7e3dfb076653a562 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlsfuzzer': checked out '61f45d9701294fd87ef92d2a7e3dfb076653a562'
+From https://github.com/tlsfuzzer/tlslite-ng
+ * branch            77ef321dde1a9e6bcf94d73c80f8789a770d8031 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlslite-ng': checked out '77ef321dde1a9e6bcf94d73c80f8789a770d8031'
+From https://github.com/google/wycheproof
+ * branch            2196000605e45d91097147c9c71f26b72af58003 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/wycheproof': checked out '2196000605e45d91097147c9c71f26b72af58003'
+From https://gitlab.com/cmocka/cmocka
+ * branch            a01cc69ee9536f90e57c61a198f2d1944d3d4313 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/unit_test/cmockalib/cmocka': checked out 'a01cc69ee9536f90e57c61a198f2d1944d3d4313'
+From https://github.com/tianocore/edk2-cmocka
+ * branch            1cc9cde3448cdd2e000886a26acf1caac2db7cf1 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/UnitTestFrameworkPkg/Library/CmockaLib/cmocka': checked out '1cc9cde3448cdd2e000886a26acf1caac2db7cf1'
+From https://github.com/google/googletest
+ * branch            86add13493e5c881d7e4ba77fb91c1f57752b3a4 -> FETCH_HEAD
+Submodule path 'Mu_Basecore/UnitTestFrameworkPkg/Library/GoogleTestLib/googletest': checked out '86add13493e5c881d7e4ba77fb91c1f57752b3a4'
+Submodule path 'Mu_Basecore/UnitTestFrameworkPkg/Library/SubhookLib/subhook': checked out '83d4e1ebef3588fae48b69a7352cc21801cb70bc'
+Submodule path 'Silicium-ACPI': checked out '1c8bd63a7ffcaecf3c8764a6b01a11e053457543'
+From https://github.com/openssl/openssl
+ * branch            67b5686b4419b4cb8caa502711c41815f5279751 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl': checked out '67b5686b4419b4cb8caa502711c41815f5279751'
+Submodule 'cloudflare-quiche' (https://github.com/cloudflare/quiche) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/cloudflare-quiche'
+Submodule 'fuzz/corpora' (https://github.com/openssl/fuzz-corpora) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/fuzz/corpora'
+Submodule 'gost-engine' (https://github.com/gost-engine/engine) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/gost-engine'
+Submodule 'krb5' (https://github.com/krb5/krb5) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/krb5'
+Submodule 'oqs-provider' (https://github.com/open-quantum-safe/oqs-provider.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/oqs-provider'
+Submodule 'pkcs11-provider' (https://github.com/latchset/pkcs11-provider.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider'
+Submodule 'pyca.cryptography' (https://github.com/pyca/cryptography.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pyca-cryptography'
+Submodule 'python-ecdsa' (https://github.com/tlsfuzzer/python-ecdsa) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/python-ecdsa'
+Submodule 'tlsfuzzer' (https://github.com/tlsfuzzer/tlsfuzzer) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlsfuzzer'
+Submodule 'tlslite-ng' (https://github.com/tlsfuzzer/tlslite-ng) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlslite-ng'
+Submodule 'wycheproof' (https://github.com/google/wycheproof) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/wycheproof'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/cloudflare-quiche'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/gost-engine'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/krb5'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/fuzz/corpora'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/oqs-provider'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/python-ecdsa'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlslite-ng'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pyca-cryptography'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlsfuzzer'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/wycheproof'...
+From https://github.com/cloudflare/quiche
+ * branch            7ab6a55cfe471267d61e4d28ba43d41defcd87e0 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/cloudflare-quiche': checked out '7ab6a55cfe471267d61e4d28ba43d41defcd87e0'
+Submodule 'boringssl' (https://github.com/google/boringssl.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/cloudflare-quiche/quiche/deps/boringssl'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/cloudflare-quiche/quiche/deps/boringssl'...
+From https://github.com/google/boringssl
+ * branch            f1c75347daa2ea81a941e953f2263e0a4d970c8d -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/cloudflare-quiche/quiche/deps/boringssl': checked out 'f1c75347daa2ea81a941e953f2263e0a4d970c8d'
+From https://github.com/openssl/fuzz-corpora
+ * branch              ce771805c094d098c25a218bc8e9f7344eccbc5a -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/fuzz/corpora': checked out 'ce771805c094d098c25a218bc8e9f7344eccbc5a'
+From https://github.com/gost-engine/engine
+ * branch            74b1f4fddbc2d6de969815b1992ddc1ae7c643fe -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/gost-engine': checked out '74b1f4fddbc2d6de969815b1992ddc1ae7c643fe'
+Submodule 'libprov' (https://github.com/provider-corner/libprov.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/gost-engine/libprov'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/gost-engine/libprov'...
+From https://github.com/provider-corner/libprov
+ * branch            0b445c73ae1e87577430c6884cdeeca1afa36dbd -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/gost-engine/libprov': checked out '0b445c73ae1e87577430c6884cdeeca1afa36dbd'
+From https://github.com/krb5/krb5
+ * branch            784c38f50e70a739400cdd3f2620bac2e2788e6c -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/krb5': checked out '784c38f50e70a739400cdd3f2620bac2e2788e6c'
+From https://github.com/open-quantum-safe/oqs-provider
+ * branch            7bc597c04b534ddea9b6654481deb31ded8e1bbc -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/oqs-provider': checked out '7bc597c04b534ddea9b6654481deb31ded8e1bbc'
+From https://github.com/latchset/pkcs11-provider
+ * branch            663dea335c80bec7fd96d544ff875af08d6461a9 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider': checked out '663dea335c80bec7fd96d544ff875af08d6461a9'
+Submodule 'python-ecdsa' (https://github.com/tlsfuzzer/python-ecdsa.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/python-ecdsa'
+Submodule 'tlsfuzzer' (https://github.com/tlsfuzzer/tlsfuzzer.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlsfuzzer'
+Submodule 'tlslite-ng' (https://github.com/tlsfuzzer/tlslite-ng.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlslite-ng'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/python-ecdsa'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlslite-ng'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlsfuzzer'...
+From https://github.com/tlsfuzzer/python-ecdsa
+ * branch            ea9666903c109a8e88a37eb1c60d4e98f01f0299 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/python-ecdsa': checked out 'ea9666903c109a8e88a37eb1c60d4e98f01f0299'
+From https://github.com/tlsfuzzer/tlsfuzzer
+ * branch            32fcb0d8e78fd9ffc4568d11ba5916936a46af8c -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlsfuzzer': checked out '32fcb0d8e78fd9ffc4568d11ba5916936a46af8c'
+From https://github.com/tlsfuzzer/tlslite-ng
+ * branch            4e16574d7c52f17c81c3f5e0aa547776a67fdf8e -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlslite-ng': checked out '4e16574d7c52f17c81c3f5e0aa547776a67fdf8e'
+From https://github.com/pyca/cryptography
+ * branch            7e33b0e7739d633c77b8c478620167f693ed13f4 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pyca-cryptography': checked out '7e33b0e7739d633c77b8c478620167f693ed13f4'
+From https://github.com/tlsfuzzer/python-ecdsa
+ * branch            4096fa01715929e08b97e73f3173aee9d57f2a3f -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/python-ecdsa': checked out '4096fa01715929e08b97e73f3173aee9d57f2a3f'
+From https://github.com/tlsfuzzer/tlsfuzzer
+ * branch            61f45d9701294fd87ef92d2a7e3dfb076653a562 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlsfuzzer': checked out '61f45d9701294fd87ef92d2a7e3dfb076653a562'
+From https://github.com/tlsfuzzer/tlslite-ng
+ * branch            77ef321dde1a9e6bcf94d73c80f8789a770d8031 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlslite-ng': checked out '77ef321dde1a9e6bcf94d73c80f8789a770d8031'
+From https://github.com/google/wycheproof
+ * branch            2196000605e45d91097147c9c71f26b72af58003 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/wycheproof': checked out '2196000605e45d91097147c9c71f26b72af58003'
+==> revision 42fe563791e51bf5500c2e470ed294ca0c94b97c
+
+=== build-uefi.py output ===
+clang --target=aarch64-linux-gnu -c BootShim.S -o BootShim.elf -DREQUIRES_KERNEL_HEADER=1 -DFD_BASE=0x3400000 -DFD_SIZE=0x300000
+llvm-objcopy -O binary BootShim.elf BootShim.bin
+SECTION - Init Self Describing Environment
+SECTION - Loading Plugins
+SECTION - Start Invocable Tool
+PROGRESS - ## Resolving Git Submodule: Binaries
+PROGRESS - ## Done.
+
+PROGRESS - ## Resolving Git Submodule: Common/Mu
+PROGRESS - ## Done.
+
+PROGRESS - ## Resolving Git Submodule: Common/Mu_OEM_Sample
+PROGRESS - ## Done.
+
+PROGRESS - ## Resolving Git Submodule: Mu_Basecore
+PROGRESS - ## Done.
+
+PROGRESS - ## Resolving Git Submodule: Silicium-ACPI
+PROGRESS - ## Done.
+
+PROGRESS - ## Resolving Git Submodule: Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl
+PROGRESS - ## Done.
+
+SECTION - Summary
+PROGRESS - Success
+SECTION - Init Self Describing Environment
+SECTION - Loading Plugins
+SECTION - Start Invocable Tool
+SECTION - Initial update of environment
+Updating..SECTION - 	Updated/Verified 3 dependencies
+SECTION - Second pass update of environment
+. Done
+UpdatingSECTION - 	Updated/Verified 3 dependencies
+SECTION - Summary
+PROGRESS - Success
+. Done
+INFO - Log Started: Wednesday, October 21, 2026 11:54PM
+INFO - Cmd to run is: stuart TARGET=DEBUG ENABLE_SECUREBOOT=0 FD_BASE=0x3400000 FD_SIZE=0x300000 FD_BLOCKS=0x300 DEVICE_MODEL=0
+SECTION - Init Self Describing Environment
+INFO - Computing path for Mu-Basetools located at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep on Host(os='Linux', arch='x86', bit='64')
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep/Linux-x86 was found!
+INFO - Computing path for mu_nasm located at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/mu_nasm_extdep on Host(os='Linux', arch='x86', bit='64')
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/mu_nasm_extdep/Linux-x86-64 was found!
+INFO - Computing path for Mu-Basetools located at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep on Host(os='Linux', arch='x86', bit='64')
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep/Linux-x86 was found!
+INFO - Computing path for mu_nasm located at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/mu_nasm_extdep on Host(os='Linux', arch='x86', bit='64')
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/mu_nasm_extdep/Linux-x86-64 was found!
+INFO - Computing path for Mu-Basetools located at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep on Host(os='Linux', arch='x86', bit='64')
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep/Linux-x86 was found!
+INFO - Computing path for mu_nasm located at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/mu_nasm_extdep on Host(os='Linux', arch='x86', bit='64')
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/mu_nasm_extdep/Linux-x86-64 was found!
+SECTION - Loading Plugins
+INFO - PLUGIN DESCRIPTOR:Windows Capsule Support Helper Functions
+INFO - PLUGIN DESCRIPTOR:Edk2Tool Helper Functions
+INFO - PLUGIN DESCRIPTOR:Rust Package Helper
+SECTION - Start Invocable Tool
+INFO - Running Python version: sys.version_info(major=3, minor=12, micro=3, releaselevel='final', serial=0)
+INFO - argcomplete version: 3.7.2
+INFO - pyparsing version: 3.1.1
+INFO - dbus-python version: 1.3.2
+INFO - pyasn1 version: 0.4.8
+INFO - packaging version: 24.0
+INFO - et_xmlfile version: 2.0.0
+INFO - gitdb version: 4.0.11
+INFO - wadllib version: 1.3.6
+INFO - PyJWT version: 2.7.0
+INFO - netaddr version: 0.8.0
+INFO - markdown-it-py version: 3.0.0
+INFO - mdurl version: 0.1.2
+INFO - distro-info version: 1.7+build1
+INFO - command-not-found version: 0.3
+INFO - systemd-python version: 235
+INFO - Twisted version: 24.3.0
+INFO - hyperlink version: 21.0.0
+INFO - openpyxl version: 3.1.5
+INFO - filelock version: 4.2.2
+INFO - constantly version: 23.10.4
+INFO - wheel version: 0.42.0
+INFO - pyasn1-modules version: 0.2.8
+INFO - rich version: 15.0.0
+INFO - lazr.restfulclient version: 0.14.6
+INFO - smmap version: 6.0.0
+INFO - jsonschema version: 4.10.3
+INFO - userpath version: 1.9.2
+INFO - pipx version: 1.16.7
+INFO - colorama version: 0.4.6
+INFO - zope.interface version: 6.1
+INFO - edk2-pytool-library version: 0.23.17
+INFO - semantic-version version: 2.10.0
+INFO - python-dateutil version: 2.8.2
+INFO - distro version: 1.9.0
+INFO - idna version: 3.6
+INFO - six version: 1.16.0
+INFO - pexpect version: 4.9.0
+INFO - attrs version: 23.2.0
+INFO - setuptools version: 84.2.1
+INFO - coloredlogs version: 15.0.1
+INFO - PyHamcrest version: 2.1.0
+INFO - jmespath version: 1.0.1
+INFO - oauthlib version: 3.2.2
+INFO - pyOpenSSL version: 23.2.0
+INFO - urllib3 version: 2.0.7
+INFO - zstandard version: 0.22.0
+INFO - joblib version: 1.6.0
+INFO - Jinja2 version: 3.1.2
+INFO - requests version: 2.31.0
+INFO - certifi version: 2023.11.17
+INFO - edk2-pytool-extensions version: 0.31.3
+INFO - ptyprocess version: 0.7.0
+INFO - boto3 version: 1.34.46
+INFO - click version: 8.1.6
+INFO - pyserial version: 3.5
+INFO - python-debian version: 0.1.49+ubuntu2
+INFO - typing_extensions version: 4.10.0
+INFO - configobj version: 5.0.8
+INFO - bcrypt version: 3.2.2
+INFO - platformdirs version: 4.13.4
+INFO - pefile version: 2024.8.26
+INFO - jsonpatch version: 1.32
+INFO - WALinuxAgent version: 2.15.0.1
+INFO - chardet version: 5.2.0
+INFO - GitPython version: 3.1.37
+INFO - SQLAlchemy version: 2.1.6
+INFO - humanfriendly version: 10.0
+INFO - cloud-init version: 26.1
+INFO - blinker version: 1.7.0
+INFO - s3transfer version: 0.10.1
+INFO - netifaces version: 0.11.0
+INFO - Automat version: 22.10.0
+INFO - cloudpickle version: 3.1.2
+INFO - pyrsistent version: 0.20.0
+INFO - pip version: 24.0
+INFO - Babel version: 2.10.3
+INFO - Pygments version: 2.17.2
+INFO - MarkupSafe version: 2.1.5
+INFO - bcc version: 0.29.1
+INFO - httplib2 version: 0.20.4
+INFO - lazr.uri version: 1.0.6
+INFO - xlsxwriter version: 3.2.9
+INFO - pyparted version: 3.12.0
+INFO - pytz version: 2024.1
+INFO - PyYAML version: 6.0.1
+INFO - regex version: 2026.9.29
+INFO - python-magic version: 0.4.27
+INFO - jsonpointer version: 2.0
+INFO - incremental version: 22.10.0
+INFO - ufw version: 0.36.2
+INFO - cryptography version: 41.0.7
+INFO - botocore version: 1.34.46
+INFO - pygount version: 3.2.0
+INFO - passlib version: 1.7.4
+INFO - mercurial version: 6.7.2
+INFO - ubuntu-pro-client version: 8001
+INFO - antlr4-python3-runtime version: 4.13.2
+INFO - sos version: 4.11.2
+INFO - python-apt version: 2.7.7+ubuntu5.3
+INFO - launchpadlib version: 1.11.0
+INFO - PyGObject version: 3.48.2
+INFO - ssh-import-id version: 5.11
+INFO - service-identity version: 24.1.0
+INFO - cargo version: 1.99.1
+INFO - cargo make version: N/A
+INFO - rustc version: 1.99.1
+SECTION - Loading Plugins
+INFO - PLUGIN DESCRIPTOR:Windows Capsule Support Helper Functions
+INFO - PLUGIN DESCRIPTOR:Edk2Tool Helper Functions
+INFO - PLUGIN DESCRIPTOR:Rust Package Helper
+SECTION - Kicking off build
+PROGRESS - Start time: 2026-10-21 23:54:57.030787
+PROGRESS - Setting up the Environment
+PROGRESS - Running Pre Build
+INFO - Writing BuildToolsReports to /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Build/tasPkg/DEBUG_CLANGPDB/BUILD_TOOLS_REPORT
+PROGRESS - Checking DEBUG Macros
+INFO - Checking Debug Macros in directory: /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg
+
+INFO - Gathering the overall file list. This might take awhile.
+
+INFO - Getting git ignore files...
+INFO - Ignoring git ignore files...
+INFO -   9 files are ignored by git
+INFO -   0 files after removing ignored files
+INFO - 
+Starting macro check on 0 files.
+INFO - Cmd to run is: /usr/lib/llvm-18/bin/clang --version
+INFO - ------------------------------------------------
+INFO - --------------Cmd Output Starting---------------
+INFO - ------------------------------------------------
+INFO - Ubuntu clang version 18.1.3 (1ubuntu1)
+INFO - Target: x86_64-pc-linux-gnu
+INFO - Thread model: posix
+INFO - InstalledDir: /usr/lib/llvm-18/bin
+INFO - ------------------------------------------------
+INFO - --------------Cmd Output Finished---------------
+INFO - --------- Running Time (mm:ss): 00:00 ----------
+INFO - ----------- Return Code: 0x00000000 ------------
+INFO - ------------------------------------------------
+INFO - Cmd to run is: /usr/lib/llvm-18/bin/lld-link --version
+INFO - ------------------------------------------------
+INFO - --------------Cmd Output Starting---------------
+INFO - ------------------------------------------------
+INFO - Ubuntu LLD 18.1.3
+INFO - ------------------------------------------------
+INFO - --------------Cmd Output Finished---------------
+INFO - --------- Running Time (mm:ss): 00:00 ----------
+INFO - ----------- Return Code: 0x00000000 ------------
+INFO - ------------------------------------------------
+INFO - ---------------------------------------------------------------------
+INFO - --------------Override/Deprecation Validation Starting---------------
+INFO - ---------------------------------------------------------------------
+CRITICAL - Override Log file at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Build/tasPkg/DEBUG_CLANGPDB/OVERRIDELOG.TXT
+INFO - ----------------------------------------------------------------------
+INFO - --------------Override/Deprecation Validation Finished----------------
+INFO - -------------- Running Time (mm:ss): 00:00 -------------
+INFO - ----------------------------------------------------------------------
+PROGRESS - Running Build DEBUG
+INFO - Cmd to run is: build -p tasPkg/tas.dsc -b DEBUG -t CLANGPDB -a AARCH64 -y /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Build/tasPkg/DEBUG_CLANGPDB/BUILD_REPORT.TXT -Y PCD -Y DEPEX -Y FLASH -Y BUILD_FLAGS -Y LIBRARY -Y FIXED_ADDRESS -Y HASH -D ONE_CRYPTO_PATH=/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/CryptoPkg/Binaries/onecrypto-bin_extdep -D BUILDID_STRING=Unknown -D MEMORY_PROTECTION=TRUE -D SHIP_MODE=FALSE -D ENABLE_SECUREBOOT=0 -D FD_BASE=0x3400000 -D FD_SIZE=0x300000 -D FD_BLOCKS=0x300
+INFO - ------------------------------------------------
+INFO - --------------Cmd Output Starting---------------
+INFO - ------------------------------------------------
+INFO - Build environment: Linux-7.0.0-1017-azure-x86_64-with-glibc2.39
+INFO - SOURCE_DATE_EPOCH not set - using 1792626897
+INFO - Build start time: 23:54:57, Oct.21 2026
+INFO - 
+INFO - WORKSPACE        = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium
+INFO - PACKAGES_PATH    = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu_OEM_Sample:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicium-ACPI
+INFO - EDK_TOOLS_PATH   = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools
+INFO - EDK_TOOLS_BIN    = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep/Linux-x86
+INFO - CONF_PATH        = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Conf
+INFO - PYTHON_COMMAND   = /usr/bin/python3
+INFO - 
+INFO - 
+INFO - Processing meta-data .
+INFO - Architecture(s)  = AARCH64
+INFO - Build target     = DEBUG
+INFO - Toolchain        = CLANGPDB
+INFO - 
+INFO - Active Platform          = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc
+INFO - build...
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/SiliciumPkg/SiliciumPkg.dsc.inc(211): warning: /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/ArmPkg/Library/ArmPsciResetSystemLib/ArmPsciResetSystemLib.inf does not support LIBRARY_CLASS HwResetSystemLib
+INFO - 
+INFO - 
+INFO - build.py...
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc(...): error 4000: Instance of library class [MemoryMapLib] is not found for module [/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/SiliciumPkg/Sec/Sec.inf], [MemoryMapLib] is:
+INFO - 	consumed by /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/SiliciumPkg/Library/MemoryInitPeiLib/MemoryInitPeiLib.inf
+INFO - 
+INFO - 
+INFO - - Failed -
+INFO - Build end time: 23:54:57, Oct.21 2026
+INFO - Build total time: 00:00:00
+INFO - 
+INFO - ------------------------------------------------
+INFO - --------------Cmd Output Finished---------------
+INFO - --------- Running Time (mm:ss): 00:00 ----------
+INFO - ----------- Return Code: 0x00000001 ------------
+INFO - ------------------------------------------------
+ERROR - Compiler #4000 from /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc(...): Instance of library class [MemoryMapLib] is not found for module [/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/SiliciumPkg/Sec/Sec.inf], [MemoryMapLib] is:
+CRITICAL - Build failed
+PROGRESS - End time: 2026-10-21 23:54:58.020181	 Total time Elapsed: 0:00:00
+SECTION - Log file is located at: /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Build/BUILDLOG_tasPkg.txt
+SECTION - Summary
+ERROR - Error
+
+=== Build.log files ===
