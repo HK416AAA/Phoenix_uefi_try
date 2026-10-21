@@ -1,0 +1,130 @@
+name: build-uefi
+
+on:
+  workflow_dispatch:
+    inputs:
+      device:
+        description: "Mu-Silicium codename (Resources/Configs/<device>.toml)"
+        required: true
+        default: giulia
+      mu_ref:
+        description: "Mu-Silicium git ref"
+        required: true
+        default: main
+      mode:
+        description: "Build mode"
+        type: choice
+        options: [DEBUG, RELEASE]
+        default: DEBUG
+      model:
+        description: "Device model index"
+        required: true
+        default: "0"
+      qemu:
+        description: "Run QEMU load smoke (not a hardware test)"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-uefi.yml"
+      - "scripts/**"
+      - "config/**"
+
+permissions:
+  contents: read
+
+env:
+  MU_DIR: ${{ github.workspace }}/Mu-Silicium
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve inputs
+        id: in
+        run: |
+          echo "device=${{ inputs.device || 'giulia' }}" >> "$GITHUB_OUTPUT"
+          echo "mu_ref=${{ inputs.mu_ref || 'main' }}" >> "$GITHUB_OUTPUT"
+          echo "mode=${{ inputs.mode || 'DEBUG' }}" >> "$GITHUB_OUTPUT"
+          echo "model=${{ inputs.model || '0' }}" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Mu-Silicium
+        uses: actions/cache@v4
+        with:
+          path: Mu-Silicium
+          key: mu-${{ steps.in.outputs.mu_ref }}-${{ hashFiles('scripts/fetch-uefi.sh') }}
+          restore-keys: |
+            mu-${{ steps.in.outputs.mu_ref }}-
+
+      - name: Fetch Mu-Silicium
+        run: bash scripts/fetch-uefi.sh "$MU_DIR" "${{ steps.in.outputs.mu_ref }}"
+
+      - name: Check device exists
+        working-directory: Mu-Silicium
+        run: |
+          device="${{ steps.in.outputs.device }}"
+          if [ ! -f "Resources/Configs/${device}.toml" ]; then
+            echo "::error::No Resources/Configs/${device}.toml. Known codenames:"
+            ls Resources/Configs | sed 's/\.toml$//' | sort | head -100
+            exit 1
+          fi
+
+      - name: Install dependencies
+        working-directory: Mu-Silicium
+        run: bash ./setup_env.sh -p apt
+
+      - name: Build UEFI
+        working-directory: Mu-Silicium
+        run: |
+          python3 build_uefi.py \
+            -d "${{ steps.in.outputs.device }}" \
+            -r "${{ steps.in.outputs.mode }}" \
+            -m "${{ steps.in.outputs.model }}" \
+            -c
+
+      - name: Verify firmware volume
+        run: |
+          python3 scripts/verify-fv.py \
+            "Mu-Silicium/Build/${{ steps.in.outputs.device }}Pkg/${{ steps.in.outputs.mode }}_CLANGPDB/FV/SILICIUM_UEFI.fd"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: uefi-${{ steps.in.outputs.device }}-${{ steps.in.outputs.mode }}
+          path: |
+            Mu-Silicium/Mu-*
+            Mu-Silicium/Build/${{ steps.in.outputs.device }}Pkg/${{ steps.in.outputs.mode }}_CLANGPDB/FV/SILICIUM_UEFI.fd
+          if-no-files-found: error
+          compression-level: 9
+
+  qemu-smoke:
+    if: ${{ inputs.qemu }}
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: uefi-${{ inputs.device || 'giulia' }}-${{ inputs.mode || 'DEBUG' }}
+          path: out
+
+      - name: Install QEMU
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-arm
+
+      - name: Load firmware in QEMU
+        run: |
+          fd="$(find out -name SILICIUM_UEFI.fd | head -1)"
+          echo "firmware: $fd"
+          # A phone FV has no drivers for QEMU's virt machine, so this only
+          # proves the image loads and the CPU starts executing it.
+          timeout 20s qemu-system-aarch64 -M virt -cpu cortex-a57 -m 1024 \
+            -bios "$fd" -nographic -no-reboot || \
+            echo "QEMU exited (expected: firmware targets real hardware)"

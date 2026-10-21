@@ -1,0 +1,29 @@
+# Device: TAS-AL00 (Mate 30 4G, Kirin 990 4G, 6 GB)
+# Boot header values taken from kirin990_Lio-al00_HM103_ksu_101.img,
+# memory map confirmed on the device via /proc/iomem.
+
+[status]
+model_count = 1
+
+[boot_shim]
+# The stock Image.gz decompresses to an ARM64 Image with a valid header.
+requires_kernel_header = true
+
+[uefi_fd]
+# /proc/iomem:
+#   00080000-0214ffff  Kernel code
+#   02150000-0223ffff  reserved
+#   02240000-0325ffff  Kernel data
+# so the kernel ends at 0x3260000, matching Image header image_size 0x31e0000.
+# System RAM 0x00000000-0x0fffffff is free from 0x3260000 to 0x10000000.
+base = 0x3400000
+size = 0x300000
+
+[boot_image_kernel]
+kernel_compression = "gzip"
+# ABL selects the board DTB from the dtb/dtbo partitions (cmdline dtbo_idx=292),
+# not from this field. Keep the stock table via repack-bootimg.py anyway.
+append_dtb = false
+
+[boot_image]
+header_version = 2

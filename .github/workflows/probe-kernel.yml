@@ -1,0 +1,50 @@
+name: probe-kernel
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Kernel git ref (branch, tag or SHA)"
+        required: true
+        default: "2f71c5e433024c76412bab655e6ff54b3e656ca8"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-kernel.yml"
+      - "scripts/probe-kernel-source.sh"
+      - "scripts/fetch-kernel.sh"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache kernel source
+        uses: actions/cache@v4
+        with:
+          path: Mu-Kernel
+          key: kernel-${{ inputs.ref || '2f71c5e433024c76412bab655e6ff54b3e656ca8' }}
+          restore-keys: |
+            kernel-
+
+      - name: Fetch kernel
+        run: bash scripts/fetch-kernel.sh Mu-Kernel "${{ inputs.ref || '2f71c5e433024c76412bab655e6ff54b3e656ca8' }}"
+
+      - name: Probe
+        run: bash scripts/probe-kernel-source.sh Mu-Kernel kernel-probe
+
+      - name: Show summary
+        run: cat kernel-probe/summary.txt
+
+      - name: Upload probe
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-probe-${{ github.run_number }}
+          path: kernel-probe
+          if-no-files-found: error

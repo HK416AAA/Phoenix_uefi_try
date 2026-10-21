@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# local test output
+_t*/
+*_test/
+dtb-out/
+kernel-probe/
+out/
+
+# build artifacts (download from Actions instead)
+*.img
+*.bin
+*.bin.gz
+*.elf
+*.o
+Mu-Silicium/
+Mu-Kernel/

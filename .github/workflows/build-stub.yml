@@ -1,0 +1,49 @@
+name: build-stub
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "stub/**"
+      - ".github/workflows/build-stub.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang lld
+
+      - name: Build stub
+        run: |
+          mkdir -p out
+          clang --target=aarch64-none-elf -nostdlib -fno-stack-protector -fuse-ld=lld \
+            -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
+            -o out/stub.bin stub/start.S
+          gzip -9 -c out/stub.bin > out/stub.bin.gz
+          python3 - <<'PY'
+          data = open("out/stub.bin", "rb").read()
+          assert len(data) > 0x40, len(data)
+          assert data[0x38:0x3C] == b"ARM\x64", data[0x38:0x3C]
+          print(f"stub size: {len(data)} bytes")
+          print("ARM64 Image magic at 0x38: ok")
+          PY
+          sha256sum out/stub.bin out/stub.bin.gz
+
+      - name: Upload stub
+        uses: actions/upload-artifact@v4
+        with:
+          name: stub-${{ github.run_number }}
+          path: |
+            out/stub.bin
+            out/stub.bin.gz
+          if-no-files-found: error
