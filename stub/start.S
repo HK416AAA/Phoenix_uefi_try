@@ -24,7 +24,7 @@ _start:
     .long   0                    /* reserved */
 
 _real_start:
-    movz    x1, #0x3650, lsl #16     /* 0x36500000: logo buffer */
+    movz    x1, #0x3650, lsl #16     /* 0x36500000: lcd_dispbuf */
     movz    w2, #0xFFFF, lsl #16     /* 0xFFFF0000: solid colour */
     movz    x3, #0x2690             /* 0x269000 = 1080 * 2340 (rounded) */
     lsl     x3, x3, #8
@@ -34,9 +34,24 @@ _real_start:
     subs    x3, x3, #1
     b.ne    1b
 
+    movz    x1, #0x36ea, lsl #16     /* 0x36ea3f80: canvas_buf */
+    movk    x1, #0x3f80
+    movz    x3, #0x2690
+    lsl     x3, x3, #8
+
 2:
+    str     w2, [x1], #4
+    subs    x3, x3, #1
+    b.ne    2b
+
+    /* If both writes survived, reset so the result is visible as a reboot. */
+    movz    w0, #0x0009
+    movk    w0, #0x8400, lsl #16     /* PSCI SYSTEM_RESET */
+    smc     #0
+
+3:
     wfi
-    b       2b
+    b       3b
 
     .section .rodata
     .align 3

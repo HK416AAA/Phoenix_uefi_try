@@ -23,49 +23,59 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y clang lld
 
-      - name: Build stub
+      - name: Build stubs
         run: |
           mkdir -p out
-          clang --target=aarch64-none-elf -nostdlib -fno-stack-protector -fuse-ld=lld \
-            -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
-            -o out/stub.bin stub/start.S
+          for name in stub stub-reset; do
+            src="stub/start.S"
+            if [ "$name" = "stub-reset" ]; then src="stub/reset.S"; fi
+            clang --target=aarch64-none-elf -nostdlib -fno-stack-protector -fuse-ld=lld \
+              -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
+              -o "out/$name.bin" "$src"
+          done
           python3 - <<'PY'
           import struct
 
-          path = "out/stub.bin"
-          data = bytearray(open(path, "rb").read())
-          target = 0x200000
-          if len(data) < target:
-              data += b"\0" * (target - len(data))
-          struct.pack_into("<Q", data, 16, target)  # image_size
-          open(path, "wb").write(data)
-          print(f"padded to {len(data)} bytes, image_size={target:#x}")
+          for name in ("stub", "stub-reset"):
+              path = f"out/{name}.bin"
+              data = bytearray(open(path, "rb").read())
+              target = 0x200000
+              if len(data) < target:
+                  data += b"\0" * (target - len(data))
+              struct.pack_into("<Q", data, 16, target)  # image_size
+              open(path, "wb").write(data)
+              print(f"{name}: padded to {len(data)} bytes, image_size={target:#x}")
           PY
-          gzip -9 -c out/stub.bin > out/stub.bin.gz
+          for name in stub stub-reset; do
+            gzip -9 -c "out/$name.bin" > "out/$name.bin.gz"
+          done
           python3 - <<'PY'
-          data = open("out/stub.bin", "rb").read()
-          assert len(data) > 0x40, len(data)
-          assert data[0x38:0x3C] == b"ARM\x64", data[0x38:0x3C]
-          print(f"stub size: {len(data)} bytes")
-          print("ARM64 Image magic at 0x38: ok")
+          for name in ("stub", "stub-reset"):
+              data = open(f"out/{name}.bin", "rb").read()
+              assert len(data) > 0x40, len(data)
+              assert data[0x38:0x3C] == b"ARM\x64", data[0x38:0x3C]
+              print(f"{name}: {len(data)} bytes, ARM64 magic ok")
           PY
-          sha256sum out/stub.bin out/stub.bin.gz
+          sha256sum out/*.bin out/*.bin.gz
 
-      - name: Upload stub
+      - name: Upload stubs
         uses: actions/upload-artifact@v4
         with:
           name: stub-${{ github.run_number }}
           path: |
             out/stub.bin
             out/stub.bin.gz
+            out/stub-reset.bin
+            out/stub-reset.bin.gz
           if-no-files-found: error
 
-      - name: Publish stub to repo
+      - name: Publish stubs to repo
         run: |
           mkdir -p builds
           cp out/stub.bin.gz builds/stub.bin.gz
+          cp out/stub-reset.bin.gz builds/stub-reset.bin.gz
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f builds/stub.bin.gz
+          git add -f builds/stub.bin.gz builds/stub-reset.bin.gz
           git commit -m "stub build ${GITHUB_RUN_NUMBER}" || echo "no changes"
           git push origin HEAD:main
