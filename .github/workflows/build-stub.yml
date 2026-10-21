@@ -33,6 +33,9 @@ jobs:
               -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
               -o "out/$name.bin" "$src"
           done
+          clang --target=aarch64-none-elf -nostdlib -fno-stack-protector -fuse-ld=lld \
+            -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
+            -o out/payload-fb-wdt.bin stub/payload_fb_wdt.S
           python3 - <<'PY'
           import struct
 
@@ -45,16 +48,28 @@ jobs:
               struct.pack_into("<Q", data, 16, target)  # image_size
               open(path, "wb").write(data)
               print(f"{name}: padded to {len(data)} bytes, image_size={target:#x}")
+
+          path = "out/payload-fb-wdt.bin"
+          data = bytearray(open(path, "rb").read())
+          target = 0x200000
+          if len(data) < target:
+              data += b"\0" * (target - len(data))
+          open(path, "wb").write(data)
+          print(f"payload-fb-wdt: padded to {len(data)} bytes (raw)")
           PY
           for name in stub stub-reset; do
             gzip -9 -c "out/$name.bin" > "out/$name.bin.gz"
           done
+          gzip -9 -c out/payload-fb-wdt.bin > out/payload-fb-wdt.bin.gz
           python3 - <<'PY'
           for name in ("stub", "stub-reset"):
               data = open(f"out/{name}.bin", "rb").read()
               assert len(data) > 0x40, len(data)
               assert data[0x38:0x3C] == b"ARM\x64", data[0x38:0x3C]
               print(f"{name}: {len(data)} bytes, ARM64 magic ok")
+          data = open("out/payload-fb-wdt.bin", "rb").read()
+          assert len(data) == 0x200000, len(data)
+          print("payload-fb-wdt: 2 MiB raw payload")
           PY
           sha256sum out/*.bin out/*.bin.gz
 
@@ -67,6 +82,8 @@ jobs:
             out/stub.bin.gz
             out/stub-reset.bin
             out/stub-reset.bin.gz
+            out/payload-fb-wdt.bin
+            out/payload-fb-wdt.bin.gz
           if-no-files-found: error
 
       - name: Publish stubs to repo
@@ -74,8 +91,9 @@ jobs:
           mkdir -p builds
           cp out/stub.bin.gz builds/stub.bin.gz
           cp out/stub-reset.bin.gz builds/stub-reset.bin.gz
+          cp out/payload-fb-wdt.bin.gz builds/payload-fb-wdt.bin.gz
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f builds/stub.bin.gz builds/stub-reset.bin.gz
+          git add -f builds/stub.bin.gz builds/stub-reset.bin.gz builds/payload-fb-wdt.bin.gz
           git commit -m "stub build ${GITHUB_RUN_NUMBER}" || echo "no changes"
           git push origin HEAD:main
