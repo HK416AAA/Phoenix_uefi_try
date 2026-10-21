@@ -6,7 +6,9 @@
  * the "ARM\x64" magic is satisfied, then we branch to the real entry.
  *
  * The payload paints the boot logo buffer at 0x36500000 and spins.
- * If the panel is still scanning that buffer, the screen turns solid color.
+ * Bootloader-confirmed: fb_size 0x03f00000 (63 MiB), 1080x2340,
+ * panel lcd_kit_taurus_samsung_ea8079. If the panel is still scanning that
+ * buffer, the screen turns solid colour.
  */
     .section .text
     .global _start
