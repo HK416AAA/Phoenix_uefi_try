@@ -8,7 +8,7 @@ on:
       - ".github/workflows/build-stub.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -47,3 +47,13 @@ jobs:
             out/stub.bin
             out/stub.bin.gz
           if-no-files-found: error
+
+      - name: Publish stub to repo
+        run: |
+          mkdir -p builds
+          cp out/stub.bin.gz builds/stub.bin.gz
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f builds/stub.bin.gz
+          git commit -m "stub build ${GITHUB_RUN_NUMBER}" || echo "no changes"
+          git push origin HEAD:main
