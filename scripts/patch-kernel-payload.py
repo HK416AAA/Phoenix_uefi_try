@@ -31,6 +31,9 @@ def main() -> int:
     parser.add_argument("--out", required=True, help="output Image.gz")
     parser.add_argument("--after-image-size", action="store_true",
                         help="place the payload after image_size (outside the original BSS)")
+    parser.add_argument("--patch-offset", default="0",
+                        help="image offset of the instruction to replace (default 0 = code0); "
+                             "use 0x20d0000 for stext on this kernel")
     args = parser.parse_args()
 
     raw = Path(args.kernel).read_bytes()
@@ -50,8 +53,16 @@ def main() -> int:
     out_image += payload
 
     # ARM64 b: 0x14000000 | imm26, imm26 = (target - pc) / 4.
-    imm26 = (offset >> 2) & 0x03FFFFFF
-    struct.pack_into("<I", out_image, 0, 0x14000000 | imm26)
+    patch_offset = int(args.patch_offset, 0)
+    if patch_offset + 4 > len(image):
+        print(f"FAIL: patch offset {patch_offset:#x} is outside the kernel", file=sys.stderr)
+        return 1
+    delta = offset - patch_offset
+    if not (-0x8000000 <= delta <= 0x7FFFFFC):
+        print(f"FAIL: branch delta {delta:#x} is out of range", file=sys.stderr)
+        return 1
+    imm26 = (delta >> 2) & 0x03FFFFFF
+    struct.pack_into("<I", out_image, patch_offset, 0x14000000 | imm26)
     if args.after_image_size:
         new_size = offset + len(payload)
     else:
@@ -64,7 +75,7 @@ def main() -> int:
     target = offset
     print(f"kernel image : {len(image):#x}")
     print(f"payload      : {len(payload):#x} at {offset:#x}")
-    print(f"branch       : code0 -> {target:#x} (imm26 {imm26:#x})")
+    print(f"patch        : {patch_offset:#x} -> {target:#x} (imm26 {imm26:#x})")
     print(f"image_size   : old {old_size:#x} -> new {new_size:#x}")
     print(f"gzip         : {len(compressed):#x}")
     print(f"wrote        : {args.out}")
