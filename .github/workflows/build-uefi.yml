@@ -33,7 +33,7 @@ on:
       - ".github/workflows/build-uefi.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 env:
   MU_DIR: ${{ github.workspace }}/Mu-Silicium
@@ -68,7 +68,9 @@ jobs:
           df -h
 
       - name: Fetch Mu-Silicium
-        run: bash scripts/fetch-uefi.sh "$MU_DIR" "${{ steps.in.outputs.mu_ref }}"
+        run: |
+          set -o pipefail
+          bash scripts/fetch-uefi.sh "$MU_DIR" "${{ steps.in.outputs.mu_ref }}" 2>&1 | tee fetch-uefi.log
 
       - name: Overlay tas package
         run: |
@@ -94,16 +96,40 @@ jobs:
       - name: Build UEFI
         working-directory: Mu-Silicium
         run: |
+          set -o pipefail
           python3 build_uefi.py \
             -d "${{ steps.in.outputs.device }}" \
             -r "${{ steps.in.outputs.mode }}" \
             -m "${{ steps.in.outputs.model }}" \
-            -c
+            -c 2>&1 | tee build-uefi.log
 
       - name: Verify firmware volume
         run: |
           python3 scripts/verify-fv.py \
             "Mu-Silicium/Build/${{ steps.in.outputs.device }}Pkg/${{ steps.in.outputs.mode }}_CLANGPDB/FV/SILICIUM_UEFI.fd"
+
+      - name: Publish failure log
+        if: failure()
+        run: |
+          mkdir -p builds
+          {
+            echo "=== fetch-uefi.sh output ==="
+            tail -n 400 fetch-uefi.log 2>/dev/null || true
+            echo
+            echo "=== build-uefi.py output ==="
+            tail -n 1200 Mu-Silicium/build-uefi.log 2>/dev/null || true
+            echo
+            echo "=== Build.log files ==="
+            find Mu-Silicium/Build -name 'Build.log' 2>/dev/null | while read -r f; do
+              echo "--- $f"
+              tail -n 400 "$f" 2>/dev/null || true
+            done
+          } > builds/tas-build.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f builds/tas-build.log
+          git commit -m "tas build failure ${GITHUB_RUN_NUMBER}" || echo "no changes"
+          git push origin HEAD:main || true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
