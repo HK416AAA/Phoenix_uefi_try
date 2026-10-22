@@ -25,4 +25,5 @@ _start:
     mov     x3, x22
 
     /* next instruction is the first byte of BootShim.bin */
-    b       .
+    b       1f
+1:
