@@ -1,0 +1,82 @@
+=== fetch ===
+==> clone attempt 1
+Cloning into 'uefi-sheng'...
+Submodule 'Binaries' (https://github.com/Project-Silicium/Device-Binaries.git) registered for path 'Binaries'
+Submodule 'Common/Mu' (https://github.com/microsoft/mu_plus.git) registered for path 'Common/Mu'
+Submodule 'Common/Mu_OEM_Sample' (https://github.com/microsoft/mu_oem_sample.git) registered for path 'Common/Mu_OEM_Sample'
+Submodule 'Mu_Basecore' (https://github.com/microsoft/mu_basecore.git) registered for path 'Mu_Basecore'
+Submodule 'Silicium-ACPI' (https://github.com/Project-Silicium/Silicium-ACPI.git) registered for path 'Silicium-ACPI'
+Submodule 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl' (https://github.com/openssl/openssl.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Binaries'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Common/Mu'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Common/Mu_OEM_Sample'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Silicium-ACPI'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl'...
+Submodule path 'Binaries': checked out 'a1501e0c2e642d6ac0d8f52c85af2a67b75a7799'
+From https://github.com/microsoft/mu_plus
+ * branch            b8d46c71610318e36a661819e1e3c0b8bdda413a -> FETCH_HEAD
+Submodule path 'Common/Mu': checked out 'b8d46c71610318e36a661819e1e3c0b8bdda413a'
+From https://github.com/microsoft/mu_oem_sample
+ * branch            b70b4b7bb02c43bf9db2172dfb3ed0457e2361d6 -> FETCH_HEAD
+Submodule path 'Common/Mu_OEM_Sample': checked out 'b70b4b7bb02c43bf9db2172dfb3ed0457e2361d6'
+From https://github.com/microsoft/mu_basecore
+ * branch            cfb93724a06ff86ff5ba971413368a7809ee42a5 -> FETCH_HEAD
+Submodule path 'Mu_Basecore': checked out 'cfb93724a06ff86ff5ba971413368a7809ee42a5'
+From https://github.com/Project-Silicium/Silicium-ACPI
+ * branch            2d465ad77c25de908f0ec7bdfcb57f865b61233c -> FETCH_HEAD
+Submodule path 'Silicium-ACPI': checked out '2d465ad77c25de908f0ec7bdfcb57f865b61233c'
+From https://github.com/openssl/openssl
+ * branch            67b5686b4419b4cb8caa502711c41815f5279751 -> FETCH_HEAD
+Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl': checked out '67b5686b4419b4cb8caa502711c41815f5279751'
+Submodule 'BaseTools/Source/C/BrotliCompress/brotli' (https://github.com/google/brotli) registered for path 'BaseTools/Source/C/BrotliCompress/brotli'
+Submodule 'MdeModulePkg/Library/BrotliCustomDecompressLib/brotli' (https://github.com/google/brotli) registered for path 'MdeModulePkg/Library/BrotliCustomDecompressLib/brotli'
+Submodule 'MdeModulePkg/Universal/RegularExpressionDxe/oniguruma' (https://github.com/kkos/oniguruma) registered for path 'MdeModulePkg/Universal/RegularExpressionDxe/oniguruma'
+Submodule 'MdePkg/Library/BaseFdtLib/libfdt' (https://github.com/devicetree-org/pylibfdt.git) registered for path 'MdePkg/Library/BaseFdtLib/libfdt'
+Submodule 'MdePkg/Library/MipiSysTLib/mipisyst' (https://github.com/MIPI-Alliance/public-mipi-sys-t.git) registered for path 'MdePkg/Library/MipiSysTLib/mipisyst'
+Submodule 'SecurityPkg/DeviceSecurity/SpdmLib/libspdm' (https://github.com/DMTF/libspdm.git) registered for path 'SecurityPkg/DeviceSecurity/SpdmLib/libspdm'
+Submodule 'UnitTestFrameworkPkg/Library/CmockaLib/cmocka' (https://github.com/tianocore/edk2-cmocka.git) registered for path 'UnitTestFrameworkPkg/Library/CmockaLib/cmocka'
+Submodule 'UnitTestFrameworkPkg/Library/GoogleTestLib/googletest' (https://github.com/google/googletest.git) registered for path 'UnitTestFrameworkPkg/Library/GoogleTestLib/googletest'
+Submodule 'UnitTestFrameworkPkg/Library/SubhookLib/subhook' (https://github.com/tianocore/edk2-subhook.git) registered for path 'UnitTestFrameworkPkg/Library/SubhookLib/subhook'
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/BaseTools/Source/C/BrotliCompress/brotli'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/MdeModulePkg/Library/BrotliCustomDecompressLib/brotli'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/MdeModulePkg/Universal/RegularExpressionDxe/oniguruma'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/MdePkg/Library/BaseFdtLib/libfdt'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/UnitTestFrameworkPkg/Library/CmockaLib/cmocka'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/UnitTestFrameworkPkg/Library/GoogleTestLib/googletest'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/uefi-sheng/Mu_Basecore/UnitTestFrameworkPkg/Library/SubhookLib/subhook'...
+From https://github.com/google/brotli
+ * branch            e230f474b87134e8c6c85b630084c612057f253e -> FETCH_HEAD
+Submodule path 'BaseTools/Source/C/BrotliCompress/brotli': checked out 'e230f474b87134e8c6c85b630084c612057f253e'
+From https://github.com/google/brotli
+ * branch            e230f474b87134e8c6c85b630084c612057f253e -> FETCH_HEAD
+Submodule path 'MdeModulePkg/Library/BrotliCustomDecompressLib/brotli': checked out 'e230f474b87134e8c6c85b630084c612057f253e'
+From https://github.com/kkos/oniguruma
+ * branch            4ef89209a239c1aea328cf13c05a2807e5c146d1 -> FETCH_HEAD
+Submodule path 'MdeModulePkg/Universal/RegularExpressionDxe/oniguruma': checked out '4ef89209a239c1aea328cf13c05a2807e5c146d1'
+From https://github.com/devicetree-org/pylibfdt
+ * branch            cfff805481bdea27f900c32698171286542b8d3c -> FETCH_HEAD
+Submodule path 'MdePkg/Library/BaseFdtLib/libfdt': checked out 'cfff805481bdea27f900c32698171286542b8d3c'
+From https://github.com/MIPI-Alliance/public-mipi-sys-t
+ * branch            370b5944c046bab043dd8b133727b2135af7747a -> FETCH_HEAD
+Submodule path 'MdePkg/Library/MipiSysTLib/mipisyst': checked out '370b5944c046bab043dd8b133727b2135af7747a'
+From https://github.com/DMTF/libspdm
+ * branch            f55cf6d48ec69b4ac60a63903e9c6a2cb0fd155d -> FETCH_HEAD
+Submodule path 'SecurityPkg/DeviceSecurity/SpdmLib/libspdm': checked out 'f55cf6d48ec69b4ac60a63903e9c6a2cb0fd155d'
+From https://github.com/tianocore/edk2-cmocka
+ * branch            1cc9cde3448cdd2e000886a26acf1caac2db7cf1 -> FETCH_HEAD
+Submodule path 'UnitTestFrameworkPkg/Library/CmockaLib/cmocka': checked out '1cc9cde3448cdd2e000886a26acf1caac2db7cf1'
+From https://github.com/google/googletest
+ * branch            86add13493e5c881d7e4ba77fb91c1f57752b3a4 -> FETCH_HEAD
+Submodule path 'UnitTestFrameworkPkg/Library/GoogleTestLib/googletest': checked out '86add13493e5c881d7e4ba77fb91c1f57752b3a4'
+Submodule path 'UnitTestFrameworkPkg/Library/SubhookLib/subhook': checked out '83d4e1ebef3588fae48b69a7352cc21801cb70bc'
+==> revision 0eb4514db0744b8136a3897ab1af93b713c2c27b
+
+=== build ===
+usage: build_uefi.py [-h] -d DEVICE [-m MODEL] [-r {RELEASE,DEBUG}] [-s] [-c]
+                     [-u]
+build_uefi.py: error: argument -m/--model: invalid int value: 'charlotte'
+
+=== Build.log ===
