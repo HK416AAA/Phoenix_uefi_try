@@ -53,17 +53,8 @@ jobs:
 
       - name: Generate charlotte DTB
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq device-tree-compiler
           cp platforms/Huawei/charlottePkg/Resources/charlotte-live.dtb \
             uefi-sheng/Resources/DTBs/charlotte.dtb
-          dtb=uefi-sheng/Resources/DTBs/charlotte.dtb
-          fdtput -c -t s "$dtb" /simple-framebuffer compatible simple-framebuffer
-          fdtput -t x "$dtb" /simple-framebuffer reg 0 0x36AD3850 0 0x13A8000
-          fdtput -t x "$dtb" /simple-framebuffer width 2800
-          fdtput -t x "$dtb" /simple-framebuffer height 1840
-          fdtput -t x "$dtb" /simple-framebuffer stride 11200
-          fdtput -t s "$dtb" /simple-framebuffer format x8b8g8r8
           ls -l uefi-sheng/Resources/DTBs
           test -s uefi-sheng/Resources/DTBs/charlotte.dtb
 
