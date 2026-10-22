@@ -40,6 +40,9 @@ jobs:
       - name: Fetch UniXNU
         run: |
           git clone --depth 1 https://github.com/UniXNU/UniXNU.git UniXNU
+          git -C UniXNU submodule update --init --depth 1
+          find UniXNU -maxdepth 6 -name '*.inf' | sort > unixnu-inf.txt || true
+          head -80 unixnu-inf.txt || true
 
       - name: Overlay charlotte package
         run: |
@@ -75,6 +78,9 @@ jobs:
             echo
             echo "=== build ==="
             tail -n 1500 uefi-sheng/build-charlotte.log 2>/dev/null || true
+            echo
+            echo "=== unixnu inf ==="
+            tail -n 100 unixnu-inf.txt 2>/dev/null || true
             echo
             echo "=== Build.log ==="
             find uefi-sheng/Build -name 'Build.log' 2>/dev/null | while read -r f; do
