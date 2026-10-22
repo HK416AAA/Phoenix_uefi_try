@@ -117,10 +117,14 @@ jobs:
             > builds/charlotte-uefi.fd.gz
           shim="$(find uefi-sheng -maxdepth 4 -name BootShim.bin | head -1)"
           if [ -n "$shim" ]; then cp "$shim" builds/charlotte-bootshim.bin; fi
+          if [ -f uefi-sheng/Mu-charlotte.img ]; then
+            cp uefi-sheng/Mu-charlotte.img builds/charlotte-boot.img
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f builds/charlotte-uefi.fd.gz
           if [ -f builds/charlotte-bootshim.bin ]; then git add -f builds/charlotte-bootshim.bin; fi
+          if [ -f builds/charlotte-boot.img ]; then git add -f builds/charlotte-boot.img; fi
           git commit -m "charlotte uefi ${GITHUB_RUN_NUMBER}" || echo "no changes"
           for attempt in 1 2 3; do
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
@@ -135,4 +139,5 @@ jobs:
           name: charlotte-uefi-DEBUG
           path: |
             uefi-sheng/Build/charlottePkg/DEBUG_CLANGPDB/FV/SILICIUM_UEFI.fd
+            uefi-sheng/Mu-charlotte.img
           if-no-files-found: error
