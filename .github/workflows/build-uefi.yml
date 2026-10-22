@@ -81,15 +81,14 @@ jobs:
           mkdir -p Mu-Silicium/BootShim
           cp platforms/Huawei/tasPkg/BootShim/BootShim.S Mu-Silicium/BootShim/BootShim.S
           python3 scripts/make-minimal-dtb.py Mu-Silicium/Resources/DTBs/tas.dtb
-          grep -rl 'daifclr' Mu-Silicium --exclude-dir=Build --exclude-dir=.git \
-            --include='*.S' --include='*.c' --include='*.h' > /tmp/daifclr_files || true
+          grep -rl 'daifclr, #DAIF_WR_INT_BITS' Mu-Silicium/Mu_Basecore \
+            --include='*.S' > /tmp/daifclr_files || true
           if [ -s /tmp/daifclr_files ]; then
             xargs -r sed -i \
-              -e 's/daifclr, #3/daifclr, #2/g' \
-              -e 's/daifclr, #0x3/daifclr, #0x2/g' < /tmp/daifclr_files
+              's/daifclr, #DAIF_WR_INT_BITS/daifclr, #DAIF_WR_IRQ_BIT/g' < /tmp/daifclr_files
           fi
-          grep -rn 'daifclr' Mu-Silicium --exclude-dir=Build --exclude-dir=.git \
-            --include='*.S' --include='*.c' --include='*.h' | head -40 > daifclr-after.txt || true
+          grep -rn 'daifclr' Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib \
+            --include='*.S' > daifclr-after.txt || true
 
       - name: Check device exists
         working-directory: Mu-Silicium
