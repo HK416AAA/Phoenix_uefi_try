@@ -44,6 +44,9 @@ jobs:
           clang --target=aarch64-none-elf -nostdlib -fuse-ld=lld \
             -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
             -o out/payload-c.bin stub/payload_c_entry.S out/payload_c.o
+          clang --target=aarch64-none-elf -nostdlib -fuse-ld=lld \
+            -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
+            -o out/payload-uefi-trampoline.bin stub/payload_uefi_trampoline.S
           python3 - <<'PY'
           import struct
 
@@ -97,6 +100,7 @@ jobs:
             out/payload-pstore.bin.gz
             out/payload-c.bin
             out/payload-c.bin.gz
+            out/payload-uefi-trampoline.bin
           if-no-files-found: error
 
       - name: Publish stubs to repo
@@ -107,9 +111,11 @@ jobs:
           cp out/payload-fb-wdt.bin.gz builds/payload-fb-wdt.bin.gz
           cp out/payload-pstore.bin.gz builds/payload-pstore.bin.gz
           cp out/payload-c.bin.gz builds/payload-c.bin.gz
+          cp out/payload-uefi-trampoline.bin builds/payload-uefi-trampoline.bin
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f builds/stub.bin.gz builds/stub-reset.bin.gz \
-            builds/payload-fb-wdt.bin.gz builds/payload-pstore.bin.gz builds/payload-c.bin.gz
+            builds/payload-fb-wdt.bin.gz builds/payload-pstore.bin.gz \
+            builds/payload-c.bin.gz builds/payload-uefi-trampoline.bin
           git commit -m "stub build ${GITHUB_RUN_NUMBER}" || echo "no changes"
           git push origin HEAD:main
