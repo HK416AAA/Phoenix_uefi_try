@@ -4,9 +4,10 @@
 #include <Library/SerialPortLib.h>
 
 //
-// ramoops dmesg slot 0 (0x2f000000, record 0x20000).
+// ramoops pmsg slot (0x2f0e0000, 0x20000). The console and dmesg
+// zones are overwritten by the stock kernel during boot; pmsg survives.
 //
-#define PSTORE_BASE   0x2F000000ULL
+#define PSTORE_BASE   0x2F0E0000ULL
 #define PSTORE_SIG    0x43474244U
 #define PSTORE_CAP    0x20000U
 #define PSTORE_LIMIT  0x1E000U
