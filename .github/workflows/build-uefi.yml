@@ -81,13 +81,15 @@ jobs:
           mkdir -p Mu-Silicium/BootShim
           cp platforms/Huawei/tasPkg/BootShim/BootShim.S Mu-Silicium/BootShim/BootShim.S
           python3 scripts/make-minimal-dtb.py Mu-Silicium/Resources/DTBs/tas.dtb
-          armdir="Mu-Silicium/Mu_Basecore/ArmPkg/Library/ArmLib"
-          if [ -d "$armdir" ]; then
-            grep -rl 'daifclr, #3' "$armdir" | xargs -r sed -i 's/daifclr, #3/daifclr, #2/g'
-            echo "patched ArmLib: keep FIQ masked"
-          else
-            echo "ArmLib not found at $armdir"
+          grep -rl 'daifclr' Mu-Silicium --exclude-dir=Build --exclude-dir=.git \
+            --include='*.S' --include='*.c' --include='*.h' > /tmp/daifclr_files || true
+          if [ -s /tmp/daifclr_files ]; then
+            xargs -r sed -i \
+              -e 's/daifclr, #3/daifclr, #2/g' \
+              -e 's/daifclr, #0x3/daifclr, #0x2/g' < /tmp/daifclr_files
           fi
+          grep -rn 'daifclr' Mu-Silicium --exclude-dir=Build --exclude-dir=.git \
+            --include='*.S' --include='*.c' --include='*.h' | head -40 > daifclr-after.txt || true
 
       - name: Check device exists
         working-directory: Mu-Silicium
@@ -126,11 +128,13 @@ jobs:
           shim="$(find Mu-Silicium -maxdepth 5 -name BootShim.bin | head -1)"
           if [ -n "$shim" ]; then cp "$shim" builds/tas-bootshim.bin; fi
           cp Mu-Silicium/build-uefi.log builds/tas-build.log 2>/dev/null || true
+          cp daifclr-after.txt builds/daifclr.txt 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f builds/tas-uefi.fd.gz
           if [ -f builds/tas-bootshim.bin ]; then git add -f builds/tas-bootshim.bin; fi
           if [ -f builds/tas-build.log ]; then git add -f builds/tas-build.log; fi
+          if [ -f builds/daifclr.txt ]; then git add -f builds/daifclr.txt; fi
           git commit -m "tas uefi ${GITHUB_RUN_NUMBER}" || echo "no changes"
           published=0
           for attempt in 1 2 3 4 5; do
