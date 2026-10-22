@@ -16,6 +16,7 @@
   BaseLib
   DebugLib
   SerialPortLib
+  UefiBootServicesTableLib
   UefiDriverEntryPoint
 
 [Depex]
