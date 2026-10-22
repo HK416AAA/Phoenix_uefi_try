@@ -68,6 +68,11 @@
 
 [LibraryClasses]
   #
+  # Platform memory map (FD, stack, heap, pstore, display, GIC, UFS)
+  #
+  MemoryMapLib|tasPkg/Library/MemoryMapLib/MemoryMapLib.inf
+
+  #
   # Debug and console go to the ramoops console zone (0x2f060000),
   # readable from /sys/fs/pstore/console-ramoops-0 after the next boot.
   #
