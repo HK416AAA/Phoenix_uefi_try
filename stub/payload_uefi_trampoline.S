@@ -16,6 +16,15 @@ _start:
 
     /* pmsg checkpoint at 0x2f0e0000: "TAS-TRAMP-OK\n" */
     movz    x1, #0x2f0e, lsl #16
+
+    /* clear the previous boot's pmsg data so logs are current */
+    mov     x4, x1
+    movz    x5, #0x2400
+3:
+    str     xzr, [x4], #8
+    subs    x5, x5, #1
+    b.ne    3b
+
     movz    w2, #0x4154
     movk    w2, #0x2D53, lsl #16
     str     w2, [x1, #12]
