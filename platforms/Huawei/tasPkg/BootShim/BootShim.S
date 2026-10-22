@@ -17,6 +17,38 @@ _StackSize:
 #endif
 
 _Start:
+  mov   x19, x0
+  mov   x20, x1
+
+  /* pmsg checkpoint: TAS-SHIM\n (before the copy) */
+  movz  x1, #0x2f0e, lsl #16
+  movz  w2, #0x4154
+  movk  w2, #0x2D53, lsl #16
+  str   w2, [x1, #12]
+  movz  w2, #0x4853
+  movk  w2, #0x4D49, lsl #16
+  str   w2, [x1, #16]
+  movz  w2, #0x000A
+  str   w2, [x1, #20]
+
+  str   wzr, [x1, #4]
+  mov   w2, #0x1000
+  str   w2, [x1, #8]
+  mov   w2, #0x4244
+  movk  w2, #0x4347, lsl #16
+  str   w2, [x1]
+
+  mov   x2, x1
+  add   x3, x1, #0x1000
+8:
+  dc    cvac, x2
+  add   x2, x2, #64
+  cmp   x2, x3
+  b.lo  8b
+  dsb   sy
+
+  mov   x1, x20
+  mov   x0, x19
   mov   x4, x1
   ldr   x5, =FD_BASE
   cmp   x4, x5
