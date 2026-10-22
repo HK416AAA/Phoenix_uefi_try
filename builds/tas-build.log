@@ -11,8 +11,8 @@ Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Bi
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu_OEM_Sample'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicium-ACPI'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl'...
 Submodule path 'Binaries': checked out 'a1501e0c2e642d6ac0d8f52c85af2a67b75a7799'
 From https://github.com/microsoft/mu_plus
  * branch            b8d46c71610318e36a661819e1e3c0b8bdda413a -> FETCH_HEAD
@@ -37,10 +37,10 @@ Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdeModulePkg/Universal/RegularExpressionDxe/oniguruma'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdeModulePkg/Library/BrotliCustomDecompressLib/brotli'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/UnitTestFrameworkPkg/Library/CmockaLib/cmocka'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/UnitTestFrameworkPkg/Library/GoogleTestLib/googletest'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/UnitTestFrameworkPkg/Library/CmockaLib/cmocka'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/UnitTestFrameworkPkg/Library/SubhookLib/subhook'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm'...
 From https://github.com/google/brotli
  * branch            e230f474b87134e8c6c85b630084c612057f253e -> FETCH_HEAD
 Submodule path 'Mu_Basecore/BaseTools/Source/C/BrotliCompress/brotli': checked out 'e230f474b87134e8c6c85b630084c612057f253e'
@@ -98,15 +98,15 @@ Submodule 'tlsfuzzer' (https://github.com/tlsfuzzer/tlsfuzzer) registered for pa
 Submodule 'tlslite-ng' (https://github.com/tlsfuzzer/tlslite-ng) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlslite-ng'
 Submodule 'wycheproof' (https://github.com/google/wycheproof) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/wycheproof'
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/cloudflare-quiche'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/fuzz/corpora'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/gost-engine'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/krb5'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/fuzz/corpora'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/oqs-provider'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/python-ecdsa'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pyca-cryptography'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlslite-ng'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlsfuzzer'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/tlslite-ng'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pyca-cryptography'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/wycheproof'...
 From https://github.com/cloudflare/quiche
  * branch            7ab6a55cfe471267d61e4d28ba43d41defcd87e0 -> FETCH_HEAD
@@ -140,8 +140,8 @@ Submodule 'python-ecdsa' (https://github.com/tlsfuzzer/python-ecdsa.git) registe
 Submodule 'tlsfuzzer' (https://github.com/tlsfuzzer/tlsfuzzer.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlsfuzzer'
 Submodule 'tlslite-ng' (https://github.com/tlsfuzzer/tlslite-ng.git) registered for path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlslite-ng'
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/python-ecdsa'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlsfuzzer'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlslite-ng'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/tlsfuzzer'...
 From https://github.com/tlsfuzzer/python-ecdsa
  * branch            ea9666903c109a8e88a37eb1c60d4e98f01f0299 -> FETCH_HEAD
 Submodule path 'Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm/os_stub/openssllib/openssl/pkcs11-provider/python-ecdsa': checked out 'ea9666903c109a8e88a37eb1c60d4e98f01f0299'
@@ -193,13 +193,13 @@ Submodule 'tlslite-ng' (https://github.com/tlsfuzzer/tlslite-ng) registered for 
 Submodule 'wycheproof' (https://github.com/google/wycheproof) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/wycheproof'
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/cloudflare-quiche'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/gost-engine'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/krb5'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/fuzz/corpora'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/oqs-provider'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/python-ecdsa'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlslite-ng'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pyca-cryptography'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/python-ecdsa'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/krb5'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlslite-ng'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/tlsfuzzer'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/wycheproof'...
 From https://github.com/cloudflare/quiche
@@ -234,8 +234,8 @@ Submodule 'python-ecdsa' (https://github.com/tlsfuzzer/python-ecdsa.git) registe
 Submodule 'tlsfuzzer' (https://github.com/tlsfuzzer/tlsfuzzer.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlsfuzzer'
 Submodule 'tlslite-ng' (https://github.com/tlsfuzzer/tlslite-ng.git) registered for path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlslite-ng'
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/python-ecdsa'...
-Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlslite-ng'...
 Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlsfuzzer'...
+Cloning into '/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/tlslite-ng'...
 From https://github.com/tlsfuzzer/python-ecdsa
  * branch            ea9666903c109a8e88a37eb1c60d4e98f01f0299 -> FETCH_HEAD
 Submodule path 'Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl/pkcs11-provider/python-ecdsa': checked out 'ea9666903c109a8e88a37eb1c60d4e98f01f0299'
@@ -299,7 +299,7 @@ UpdatingSECTION - 	Updated/Verified 3 dependencies
 SECTION - Summary
 PROGRESS - Success
 . Done
-INFO - Log Started: Wednesday, October 21, 2026 11:54PM
+INFO - Log Started: Thursday, October 22, 2026 12:14AM
 INFO - Cmd to run is: stuart TARGET=DEBUG ENABLE_SECUREBOOT=0 FD_BASE=0x3400000 FD_SIZE=0x300000 FD_BLOCKS=0x300 DEVICE_MODEL=0
 SECTION - Init Self Describing Environment
 INFO - Computing path for Mu-Basetools located at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep on Host(os='Linux', arch='x86', bit='64')
@@ -320,109 +320,109 @@ INFO - PLUGIN DESCRIPTOR:Edk2Tool Helper Functions
 INFO - PLUGIN DESCRIPTOR:Rust Package Helper
 SECTION - Start Invocable Tool
 INFO - Running Python version: sys.version_info(major=3, minor=12, micro=3, releaselevel='final', serial=0)
-INFO - argcomplete version: 3.7.2
-INFO - pyparsing version: 3.1.1
-INFO - dbus-python version: 1.3.2
-INFO - pyasn1 version: 0.4.8
-INFO - packaging version: 24.0
-INFO - et_xmlfile version: 2.0.0
-INFO - gitdb version: 4.0.11
-INFO - wadllib version: 1.3.6
-INFO - PyJWT version: 2.7.0
-INFO - netaddr version: 0.8.0
-INFO - markdown-it-py version: 3.0.0
-INFO - mdurl version: 0.1.2
-INFO - distro-info version: 1.7+build1
-INFO - command-not-found version: 0.3
-INFO - systemd-python version: 235
-INFO - Twisted version: 24.3.0
-INFO - hyperlink version: 21.0.0
-INFO - openpyxl version: 3.1.5
-INFO - filelock version: 4.2.2
-INFO - constantly version: 23.10.4
-INFO - wheel version: 0.42.0
-INFO - pyasn1-modules version: 0.2.8
-INFO - rich version: 15.0.0
-INFO - lazr.restfulclient version: 0.14.6
-INFO - smmap version: 6.0.0
-INFO - jsonschema version: 4.10.3
-INFO - userpath version: 1.9.2
-INFO - pipx version: 1.16.7
-INFO - colorama version: 0.4.6
-INFO - zope.interface version: 6.1
-INFO - edk2-pytool-library version: 0.23.17
-INFO - semantic-version version: 2.10.0
-INFO - python-dateutil version: 2.8.2
-INFO - distro version: 1.9.0
-INFO - idna version: 3.6
-INFO - six version: 1.16.0
-INFO - pexpect version: 4.9.0
-INFO - attrs version: 23.2.0
-INFO - setuptools version: 84.2.1
-INFO - coloredlogs version: 15.0.1
-INFO - PyHamcrest version: 2.1.0
-INFO - jmespath version: 1.0.1
-INFO - oauthlib version: 3.2.2
-INFO - pyOpenSSL version: 23.2.0
-INFO - urllib3 version: 2.0.7
-INFO - zstandard version: 0.22.0
-INFO - joblib version: 1.6.0
-INFO - Jinja2 version: 3.1.2
-INFO - requests version: 2.31.0
-INFO - certifi version: 2023.11.17
-INFO - edk2-pytool-extensions version: 0.31.3
-INFO - ptyprocess version: 0.7.0
-INFO - boto3 version: 1.34.46
-INFO - click version: 8.1.6
-INFO - pyserial version: 3.5
-INFO - python-debian version: 0.1.49+ubuntu2
-INFO - typing_extensions version: 4.10.0
-INFO - configobj version: 5.0.8
-INFO - bcrypt version: 3.2.2
-INFO - platformdirs version: 4.13.4
-INFO - pefile version: 2024.8.26
-INFO - jsonpatch version: 1.32
-INFO - WALinuxAgent version: 2.15.0.1
-INFO - chardet version: 5.2.0
-INFO - GitPython version: 3.1.37
-INFO - SQLAlchemy version: 2.1.6
-INFO - humanfriendly version: 10.0
-INFO - cloud-init version: 26.1
-INFO - blinker version: 1.7.0
-INFO - s3transfer version: 0.10.1
-INFO - netifaces version: 0.11.0
 INFO - Automat version: 22.10.0
-INFO - cloudpickle version: 3.1.2
-INFO - pyrsistent version: 0.20.0
-INFO - pip version: 24.0
-INFO - Babel version: 2.10.3
-INFO - Pygments version: 2.17.2
+INFO - coloredlogs version: 15.0.1
+INFO - incremental version: 22.10.0
+INFO - python-dateutil version: 2.8.2
+INFO - jsonpointer version: 2.0
+INFO - zstandard version: 0.22.0
 INFO - MarkupSafe version: 2.1.5
-INFO - bcc version: 0.29.1
-INFO - httplib2 version: 0.20.4
-INFO - lazr.uri version: 1.0.6
-INFO - xlsxwriter version: 3.2.9
-INFO - pyparted version: 3.12.0
-INFO - pytz version: 2024.1
-INFO - PyYAML version: 6.0.1
+INFO - urllib3 version: 2.0.7
 INFO - regex version: 2026.9.29
 INFO - python-magic version: 0.4.27
-INFO - jsonpointer version: 2.0
-INFO - incremental version: 22.10.0
-INFO - ufw version: 0.36.2
-INFO - cryptography version: 41.0.7
-INFO - botocore version: 1.34.46
-INFO - pygount version: 3.2.0
-INFO - passlib version: 1.7.4
-INFO - mercurial version: 6.7.2
+INFO - rich version: 15.0.0
+INFO - openpyxl version: 3.1.5
+INFO - pip version: 24.0
+INFO - chardet version: 5.2.0
+INFO - Twisted version: 24.3.0
+INFO - pefile version: 2024.8.26
+INFO - packaging version: 24.0
+INFO - wheel version: 0.42.0
+INFO - pexpect version: 4.9.0
+INFO - filelock version: 4.2.2
+INFO - click version: 8.1.6
+INFO - python-debian version: 0.1.49+ubuntu2
+INFO - pyserial version: 3.5
+INFO - pyasn1-modules version: 0.2.8
+INFO - argcomplete version: 3.7.2
+INFO - jmespath version: 1.0.1
+INFO - Babel version: 2.10.3
+INFO - edk2-pytool-extensions version: 0.31.3
+INFO - userpath version: 1.9.2
 INFO - ubuntu-pro-client version: 8001
-INFO - antlr4-python3-runtime version: 4.13.2
-INFO - sos version: 4.11.2
-INFO - python-apt version: 2.7.7+ubuntu5.3
+INFO - systemd-python version: 235
+INFO - oauthlib version: 3.2.2
+INFO - six version: 1.16.0
+INFO - humanfriendly version: 10.0
+INFO - bcc version: 0.29.1
+INFO - GitPython version: 3.1.37
+INFO - pyparsing version: 3.1.1
 INFO - launchpadlib version: 1.11.0
+INFO - PyHamcrest version: 2.1.0
+INFO - lazr.uri version: 1.0.6
+INFO - lazr.restfulclient version: 0.14.6
+INFO - PyYAML version: 6.0.1
+INFO - mercurial version: 6.7.2
+INFO - wadllib version: 1.3.6
 INFO - PyGObject version: 3.48.2
-INFO - ssh-import-id version: 5.11
+INFO - gitdb version: 4.0.11
+INFO - markdown-it-py version: 3.0.0
+INFO - xlsxwriter version: 3.2.9
+INFO - s3transfer version: 0.10.1
+INFO - configobj version: 5.0.8
+INFO - netifaces version: 0.11.0
+INFO - jsonschema version: 4.10.3
+INFO - blinker version: 1.7.0
+INFO - pyrsistent version: 0.20.0
+INFO - botocore version: 1.34.46
+INFO - certifi version: 2023.11.17
+INFO - semantic-version version: 2.10.0
+INFO - python-apt version: 2.7.7+ubuntu5.3
+INFO - pygount version: 3.2.0
+INFO - Jinja2 version: 3.1.2
+INFO - pyparted version: 3.12.0
+INFO - PyJWT version: 2.7.0
+INFO - pyasn1 version: 0.4.8
+INFO - netaddr version: 0.8.0
+INFO - setuptools version: 84.2.1
+INFO - mdurl version: 0.1.2
+INFO - ptyprocess version: 0.7.0
+INFO - cloudpickle version: 3.1.2
+INFO - pytz version: 2024.1
+INFO - pyOpenSSL version: 23.2.0
+INFO - et_xmlfile version: 2.0.0
+INFO - httplib2 version: 0.20.4
+INFO - cryptography version: 41.0.7
+INFO - smmap version: 6.0.0
+INFO - joblib version: 1.6.0
+INFO - colorama version: 0.4.6
+INFO - SQLAlchemy version: 2.1.6
+INFO - edk2-pytool-library version: 0.23.17
+INFO - distro-info version: 1.7+build1
+INFO - ufw version: 0.36.2
+INFO - dbus-python version: 1.3.2
+INFO - Pygments version: 2.17.2
 INFO - service-identity version: 24.1.0
+INFO - WALinuxAgent version: 2.15.0.1
+INFO - constantly version: 23.10.4
+INFO - cloud-init version: 26.1
+INFO - antlr4-python3-runtime version: 4.13.2
+INFO - boto3 version: 1.34.46
+INFO - requests version: 2.31.0
+INFO - hyperlink version: 21.0.0
+INFO - attrs version: 23.2.0
+INFO - passlib version: 1.7.4
+INFO - jsonpatch version: 1.32
+INFO - zope.interface version: 6.1
+INFO - sos version: 4.11.2
+INFO - platformdirs version: 4.13.4
+INFO - pipx version: 1.16.7
+INFO - distro version: 1.9.0
+INFO - typing_extensions version: 4.10.0
+INFO - command-not-found version: 0.3
+INFO - bcrypt version: 3.2.2
+INFO - ssh-import-id version: 5.11
+INFO - idna version: 3.6
 INFO - cargo version: 1.99.1
 INFO - cargo make version: N/A
 INFO - rustc version: 1.99.1
@@ -431,7 +431,7 @@ INFO - PLUGIN DESCRIPTOR:Windows Capsule Support Helper Functions
 INFO - PLUGIN DESCRIPTOR:Edk2Tool Helper Functions
 INFO - PLUGIN DESCRIPTOR:Rust Package Helper
 SECTION - Kicking off build
-PROGRESS - Start time: 2026-10-21 23:54:57.030787
+PROGRESS - Start time: 2026-10-22 00:14:16.512973
 PROGRESS - Setting up the Environment
 PROGRESS - Running Pre Build
 INFO - Writing BuildToolsReports to /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Build/tasPkg/DEBUG_CLANGPDB/BUILD_TOOLS_REPORT
@@ -442,7 +442,7 @@ INFO - Gathering the overall file list. This might take awhile.
 
 INFO - Getting git ignore files...
 INFO - Ignoring git ignore files...
-INFO -   9 files are ignored by git
+INFO -   11 files are ignored by git
 INFO -   0 files after removing ignored files
 INFO - 
 Starting macro check on 0 files.
@@ -483,8 +483,8 @@ INFO - ------------------------------------------------
 INFO - --------------Cmd Output Starting---------------
 INFO - ------------------------------------------------
 INFO - Build environment: Linux-7.0.0-1017-azure-x86_64-with-glibc2.39
-INFO - SOURCE_DATE_EPOCH not set - using 1792626897
-INFO - Build start time: 23:54:57, Oct.21 2026
+INFO - SOURCE_DATE_EPOCH not set - using 1792628057
+INFO - Build start time: 00:14:17, Oct.22 2026
 INFO - 
 INFO - WORKSPACE        = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium
 INFO - PACKAGES_PATH    = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu_OEM_Sample:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicium-ACPI
@@ -505,22 +505,22 @@ INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/S
 INFO - 
 INFO - 
 INFO - build.py...
-INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc(...): error 4000: Instance of library class [MemoryMapLib] is not found for module [/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/SiliciumPkg/Sec/Sec.inf], [MemoryMapLib] is:
-INFO - 	consumed by /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/SiliciumPkg/Library/MemoryInitPeiLib/MemoryInitPeiLib.inf
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc(44): error F001: Pcd (gArmTokenSpaceGuid.PcdGicRedistributorBase) defined in DSC is not declared in DEC files referenced in INF files in FDF. Arch: ['AARCH64']
+INFO - 
 INFO - 
 INFO - 
 INFO - - Failed -
-INFO - Build end time: 23:54:57, Oct.21 2026
-INFO - Build total time: 00:00:00
+INFO - Build end time: 00:14:18, Oct.22 2026
+INFO - Build total time: 00:00:01
 INFO - 
 INFO - ------------------------------------------------
 INFO - --------------Cmd Output Finished---------------
-INFO - --------- Running Time (mm:ss): 00:00 ----------
+INFO - --------- Running Time (mm:ss): 00:01 ----------
 INFO - ----------- Return Code: 0x00000001 ------------
 INFO - ------------------------------------------------
-ERROR - Compiler #4000 from /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc(...): Instance of library class [MemoryMapLib] is not found for module [/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium/SiliciumPkg/Sec/Sec.inf], [MemoryMapLib] is:
+ERROR - EDK2 #001 from /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc(44): Pcd (gArmTokenSpaceGuid.PcdGicRedistributorBase) defined in DSC is not declared in DEC files referenced in INF files in FDF. Arch: ['AARCH64']
 CRITICAL - Build failed
-PROGRESS - End time: 2026-10-21 23:54:58.020181	 Total time Elapsed: 0:00:00
+PROGRESS - End time: 2026-10-22 00:14:18.715180	 Total time Elapsed: 0:00:02
 SECTION - Log file is located at: /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Build/BUILDLOG_tasPkg.txt
 SECTION - Summary
 ERROR - Error
