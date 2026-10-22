@@ -73,6 +73,32 @@ MarkHigh (
 
 STATIC
 VOID
+MarkHighHex (
+  IN UINT32        Offset,
+  IN CONST CHAR8  *Label,
+  IN UINT32        Value
+  )
+{
+  CHAR8  Buffer[48];
+  UINTN  Index;
+  UINTN  Digit;
+  UINTN  Nibble;
+
+  Index = 0;
+  while (Label[Index] != 0) {
+    Buffer[Index] = Label[Index];
+    Index++;
+  }
+  for (Digit = 0; Digit < 8; Digit++) {
+    Nibble = (Value >> ((7 - Digit) * 4)) & 0xF;
+    Buffer[Index++] = (CHAR8)((Nibble < 10) ? ('0' + Nibble) : ('A' + Nibble - 10));
+  }
+  Buffer[Index] = 0;
+  MarkHighAt (Offset, Buffer);
+}
+
+STATIC
+VOID
 MarkHeartbeat (
   VOID
   )
@@ -108,7 +134,7 @@ MarkHeartbeat (
 
 STATIC
 VOID
-TasWdtMap (
+TasSctrlMap (
   VOID
   )
 {
@@ -118,39 +144,23 @@ TasWdtMap (
   Cpu = NULL;
   Status = gBS->LocateProtocol (&gEfiCpuArchProtocolGuid, NULL, (VOID **)&Cpu);
   if (EFI_ERROR (Status) || (Cpu == NULL)) {
-    DirectLog ("TAS-WDT-NOCPU\n");
+    DirectLog ("TAS-SCTRL-NOCPU\n");
     return;
   }
 
   gDS->AddMemorySpace (
         EfiGcdMemoryTypeMemoryMappedIo,
-        0xFA87C000,
-        0x3000,
+        0xFA800000,
+        0x1000,
         EFI_MEMORY_UC
         );
 
-  Status = Cpu->SetMemoryAttributes (Cpu, 0xFA87C000, 0x3000, EFI_MEMORY_UC);
+  Status = Cpu->SetMemoryAttributes (Cpu, 0xFA800000, 0x1000, EFI_MEMORY_UC);
   if (EFI_ERROR (Status)) {
-    DirectLog ("TAS-WDT-MAPFAIL\n");
+    DirectLog ("TAS-SCTRL-MAPFAIL\n");
   } else {
-    DirectLog ("TAS-WDT-MAP\n");
+    DirectLog ("TAS-SCTRL-MAP\n");
   }
-}
-
-STATIC
-VOID
-TasWdtKick (
-  VOID
-  )
-{
-  volatile UINT32  *Base;
-
-  Base = (volatile UINT32 *)(UINTN)0xFA87C000;
-  Base[0x00 / 4] = 0x1AAEE533;
-  Base[0x18 / 4] = 1;
-  Base[0x04 / 4] = 1;
-  (void)Base[0x00 / 4];
-  (void)Base[0x04 / 4];
 }
 
 STATIC
@@ -210,7 +220,6 @@ Lpm3Tick (
   IN VOID       *Context
   )
 {
-  TasWdtKick ();
   Lpm3Notify ();
 }
 
@@ -223,9 +232,27 @@ FiqMaskInitialize (
 {
   DirectLog ("TAS-IPC-RUN\n");
 
-  TasWdtMap ();
-  TasWdtKick ();
-  DirectLog ("TAS-WDT-KICK\n");
+  MarkHighAt (0x8800, "TAS-SCTRL-BEGIN");
+  TasSctrlMap ();
+  {
+    volatile UINT32  *Sctrl;
+    UINT32            ClkCtrl;
+    UINT32            ClkStat;
+    UINT32            Ctrl;
+    UINT32            Stat;
+
+    Sctrl   = (volatile UINT32 *)(UINTN)0xFA800000;
+    ClkCtrl = Sctrl[0x580 / 4];
+    ClkStat = Sctrl[0x584 / 4];
+    Ctrl    = Sctrl[0x588 / 4];
+    Stat    = Sctrl[0x58C / 4];
+
+    MarkHighHex (0x8840, "CLKCTRL=0x", ClkCtrl);
+    MarkHighHex (0x8880, "CLKSTAT=0x", ClkStat);
+    MarkHighHex (0x88C0, "OMCUCTL=0x", Ctrl);
+    MarkHighHex (0x8900, "OMCUSTA=0x", Stat);
+  }
+  MarkHighAt (0x8940, "TAS-SCTRL-DONE");
 
   if (Lpm3Notify ()) {
     DirectLog ("TAS-IPC-SENT\n");
