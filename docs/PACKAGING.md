@@ -146,3 +146,16 @@ fastboot flash boot stock_boot.img
 - DTBO 表来自 LIO-AL00。ABL 实际按 `dtbo_idx=292` 从 `dtbo` 分区选板级 DTB，
   boot.img 里的表不参与启动；保留它只是为了不破坏镜像格式。
 - `console=ttyS0` 已存在，但华为是否把该 UART 引出到可接触的焊盘/触点未知。
+
+## 镜像清理
+
+每生成一个新的 boot 镜像后，只保留最新一个：
+
+```bash
+python scripts/clean-images.py
+# 或显式指定
+python scripts/clean-images.py --keep boot-carrier-uefi7.img
+```
+
+`boot-*.img` 已被 `.gitignore` 忽略，清理只影响本地文件。
+
