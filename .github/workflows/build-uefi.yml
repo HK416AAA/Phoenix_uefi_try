@@ -114,13 +114,27 @@ jobs:
           mkdir -p builds
           gzip -9 -c "Mu-Silicium/Build/${{ steps.in.outputs.device }}Pkg/${{ steps.in.outputs.mode }}_CLANGPDB/FV/SILICIUM_UEFI.fd" \
             > builds/tas-uefi.fd.gz
-          shim="$(find Mu-Silicium -maxdepth 3 -name BootShim.bin | head -1)"
+          shim="$(find Mu-Silicium -maxdepth 5 -name BootShim.bin | head -1)"
           if [ -n "$shim" ]; then cp "$shim" builds/tas-bootshim.bin; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f builds/tas-uefi.fd.gz builds/tas-bootshim.bin
+          git add -f builds/tas-uefi.fd.gz
+          if [ -f builds/tas-bootshim.bin ]; then git add -f builds/tas-bootshim.bin; fi
           git commit -m "tas uefi ${GITHUB_RUN_NUMBER}" || echo "no changes"
-          git push origin HEAD:main || true
+          published=0
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase --autostash origin main || true
+            if git push origin HEAD:main; then
+              echo "published on attempt $attempt"
+              published=1
+              break
+            fi
+            sleep 5
+          done
+          if [ "$published" != 1 ]; then
+            echo "::error::could not publish builds/tas-uefi.fd.gz"
+            exit 1
+          fi
 
       - name: Publish failure log
         if: failure()
