@@ -67,11 +67,11 @@ SECTION - Initial update of environment
 Updating..SECTION - 	Updated/Verified 3 dependencies
 SECTION - Second pass update of environment
 . Done
-UpdatingSECTION - 	Updated/Verified 3 dependencies
+Updating..SECTION - 	Updated/Verified 3 dependencies
 SECTION - Summary
 PROGRESS - Success
 . Done
-INFO - Log Started: Thursday, October 22, 2026 12:20AM
+INFO - Log Started: Thursday, October 22, 2026 12:26AM
 INFO - Cmd to run is: stuart TARGET=DEBUG ENABLE_SECUREBOOT=0 FD_BASE=0x3400000 FD_SIZE=0x300000 FD_BLOCKS=0x300 DEVICE_MODEL=0
 SECTION - Init Self Describing Environment
 INFO - Computing path for Mu-Basetools located at /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/BaseTools/Bin/Mu-Basetools_extdep on Host(os='Linux', arch='x86', bit='64')
@@ -92,109 +92,109 @@ INFO - PLUGIN DESCRIPTOR:Edk2Tool Helper Functions
 INFO - PLUGIN DESCRIPTOR:Rust Package Helper
 SECTION - Start Invocable Tool
 INFO - Running Python version: sys.version_info(major=3, minor=12, micro=3, releaselevel='final', serial=0)
-INFO - joblib version: 1.6.0
-INFO - bcc version: 0.29.1
-INFO - openpyxl version: 3.1.5
-INFO - packaging version: 24.0
-INFO - setuptools version: 84.2.1
-INFO - pefile version: 2024.8.26
-INFO - coloredlogs version: 15.0.1
-INFO - lazr.uri version: 1.0.6
-INFO - PyGObject version: 3.48.2
-INFO - urllib3 version: 2.0.7
-INFO - pytz version: 2024.1
-INFO - ufw version: 0.36.2
-INFO - wheel version: 0.42.0
-INFO - cloudpickle version: 3.1.2
-INFO - httplib2 version: 0.20.4
-INFO - python-dateutil version: 2.8.2
-INFO - PyJWT version: 2.7.0
-INFO - edk2-pytool-extensions version: 0.31.3
-INFO - Twisted version: 24.3.0
-INFO - pyserial version: 3.5
-INFO - distro-info version: 1.7+build1
-INFO - typing_extensions version: 4.10.0
-INFO - python-debian version: 0.1.49+ubuntu2
-INFO - boto3 version: 1.34.46
-INFO - service-identity version: 24.1.0
-INFO - sos version: 4.11.2
-INFO - dbus-python version: 1.3.2
-INFO - lazr.restfulclient version: 0.14.6
-INFO - userpath version: 1.9.2
-INFO - oauthlib version: 3.2.2
-INFO - blinker version: 1.7.0
-INFO - pyasn1 version: 0.4.8
-INFO - jsonschema version: 4.10.3
-INFO - semantic-version version: 2.10.0
-INFO - zstandard version: 0.22.0
-INFO - pip version: 24.0
-INFO - jmespath version: 1.0.1
-INFO - ssh-import-id version: 5.11
-INFO - chardet version: 5.2.0
-INFO - pexpect version: 4.9.0
-INFO - Automat version: 22.10.0
-INFO - pyOpenSSL version: 23.2.0
 INFO - SQLAlchemy version: 2.1.6
-INFO - command-not-found version: 0.3
-INFO - smmap version: 6.0.0
-INFO - netaddr version: 0.8.0
-INFO - Babel version: 2.10.3
-INFO - pyparsing version: 3.1.1
-INFO - WALinuxAgent version: 2.15.0.1
-INFO - incremental version: 22.10.0
-INFO - s3transfer version: 0.10.1
-INFO - certifi version: 2023.11.17
-INFO - colorama version: 0.4.6
-INFO - distro version: 1.9.0
-INFO - PyHamcrest version: 2.1.0
-INFO - python-apt version: 2.7.7+ubuntu5.3
-INFO - argcomplete version: 3.7.2
-INFO - hyperlink version: 21.0.0
-INFO - jsonpointer version: 2.0
-INFO - antlr4-python3-runtime version: 4.13.2
-INFO - pyasn1-modules version: 0.2.8
-INFO - requests version: 2.31.0
-INFO - pyrsistent version: 0.20.0
-INFO - pygount version: 3.2.0
-INFO - cryptography version: 41.0.7
-INFO - Pygments version: 2.17.2
-INFO - filelock version: 4.2.2
-INFO - pipx version: 1.16.7
-INFO - cloud-init version: 26.1
-INFO - Jinja2 version: 3.1.2
-INFO - ptyprocess version: 0.7.0
-INFO - launchpadlib version: 1.11.0
-INFO - botocore version: 1.34.46
-INFO - mdurl version: 0.1.2
-INFO - configobj version: 5.0.8
-INFO - MarkupSafe version: 2.1.5
-INFO - et_xmlfile version: 2.0.0
-INFO - bcrypt version: 3.2.2
-INFO - mercurial version: 6.7.2
-INFO - PyYAML version: 6.0.1
-INFO - click version: 8.1.6
-INFO - netifaces version: 0.11.0
-INFO - passlib version: 1.7.4
-INFO - edk2-pytool-library version: 0.23.17
+INFO - pexpect version: 4.9.0
 INFO - attrs version: 23.2.0
-INFO - markdown-it-py version: 3.0.0
-INFO - zope.interface version: 6.1
-INFO - rich version: 15.0.0
-INFO - regex version: 2026.9.29
-INFO - wadllib version: 1.3.6
+INFO - PyJWT version: 2.7.0
+INFO - pipx version: 1.16.7
+INFO - mdurl version: 0.1.2
+INFO - Automat version: 22.10.0
+INFO - command-not-found version: 0.3
 INFO - jsonpatch version: 1.32
-INFO - six version: 1.16.0
-INFO - ubuntu-pro-client version: 8001
-INFO - constantly version: 23.10.4
-INFO - gitdb version: 4.0.11
-INFO - python-magic version: 0.4.27
-INFO - xlsxwriter version: 3.2.9
-INFO - pyparted version: 3.12.0
-INFO - systemd-python version: 235
-INFO - idna version: 3.6
+INFO - jsonpointer version: 2.0
 INFO - humanfriendly version: 10.0
-INFO - GitPython version: 3.1.37
+INFO - et_xmlfile version: 2.0.0
+INFO - httplib2 version: 0.20.4
+INFO - idna version: 3.6
+INFO - pyOpenSSL version: 23.2.0
+INFO - wheel version: 0.42.0
+INFO - pyserial version: 3.5
+INFO - openpyxl version: 3.1.5
+INFO - configobj version: 5.0.8
+INFO - pyasn1-modules version: 0.2.8
+INFO - wadllib version: 1.3.6
+INFO - markdown-it-py version: 3.0.0
+INFO - hyperlink version: 21.0.0
+INFO - distro version: 1.9.0
+INFO - jmespath version: 1.0.1
+INFO - Twisted version: 24.3.0
+INFO - blinker version: 1.7.0
+INFO - mercurial version: 6.7.2
+INFO - argcomplete version: 3.7.2
+INFO - zstandard version: 0.22.0
+INFO - cryptography version: 41.0.7
+INFO - cloud-init version: 26.1
+INFO - distro-info version: 1.7+build1
+INFO - python-magic version: 0.4.27
+INFO - requests version: 2.31.0
+INFO - pip version: 24.0
+INFO - joblib version: 1.6.0
+INFO - click version: 8.1.6
+INFO - PyHamcrest version: 2.1.0
+INFO - pyparted version: 3.12.0
+INFO - incremental version: 22.10.0
+INFO - Babel version: 2.10.3
+INFO - userpath version: 1.9.2
+INFO - cloudpickle version: 3.1.2
 INFO - platformdirs version: 4.13.4
+INFO - gitdb version: 4.0.11
+INFO - PyYAML version: 6.0.1
+INFO - pygount version: 3.2.0
+INFO - oauthlib version: 3.2.2
+INFO - certifi version: 2023.11.17
+INFO - netaddr version: 0.8.0
+INFO - ptyprocess version: 0.7.0
+INFO - MarkupSafe version: 2.1.5
+INFO - antlr4-python3-runtime version: 4.13.2
+INFO - zope.interface version: 6.1
+INFO - dbus-python version: 1.3.2
+INFO - bcrypt version: 3.2.2
+INFO - smmap version: 6.0.0
+INFO - filelock version: 4.2.2
+INFO - urllib3 version: 2.0.7
+INFO - colorama version: 0.4.6
+INFO - bcc version: 0.29.1
+INFO - Pygments version: 2.17.2
+INFO - pyasn1 version: 0.4.8
+INFO - packaging version: 24.0
+INFO - six version: 1.16.0
+INFO - s3transfer version: 0.10.1
+INFO - PyGObject version: 3.48.2
+INFO - systemd-python version: 235
+INFO - pytz version: 2024.1
+INFO - ssh-import-id version: 5.11
+INFO - service-identity version: 24.1.0
+INFO - jsonschema version: 4.10.3
+INFO - launchpadlib version: 1.11.0
+INFO - pefile version: 2024.8.26
+INFO - edk2-pytool-library version: 0.23.17
+INFO - python-dateutil version: 2.8.2
+INFO - WALinuxAgent version: 2.15.0.1
+INFO - typing_extensions version: 4.10.0
+INFO - xlsxwriter version: 3.3.0
+INFO - constantly version: 23.10.4
+INFO - regex version: 2026.9.29
+INFO - botocore version: 1.34.46
+INFO - ubuntu-pro-client version: 8001
+INFO - Jinja2 version: 3.1.2
+INFO - GitPython version: 3.1.37
+INFO - rich version: 15.0.0
+INFO - edk2-pytool-extensions version: 0.31.3
+INFO - netifaces version: 0.11.0
+INFO - python-debian version: 0.1.49+ubuntu2
+INFO - setuptools version: 84.2.1
+INFO - sos version: 4.11.2
+INFO - boto3 version: 1.34.46
+INFO - lazr.restfulclient version: 0.14.6
+INFO - lazr.uri version: 1.0.6
+INFO - coloredlogs version: 15.0.1
+INFO - python-apt version: 2.7.7+ubuntu5.3
+INFO - pyparsing version: 3.1.1
+INFO - semantic-version version: 2.10.0
+INFO - ufw version: 0.36.2
+INFO - pyrsistent version: 0.20.0
+INFO - chardet version: 5.2.0
+INFO - passlib version: 1.7.4
 INFO - cargo version: 1.99.1
 INFO - cargo make version: N/A
 INFO - rustc version: 1.99.1
@@ -203,7 +203,7 @@ INFO - PLUGIN DESCRIPTOR:Windows Capsule Support Helper Functions
 INFO - PLUGIN DESCRIPTOR:Edk2Tool Helper Functions
 INFO - PLUGIN DESCRIPTOR:Rust Package Helper
 SECTION - Kicking off build
-PROGRESS - Start time: 2026-10-22 00:20:35.963269
+PROGRESS - Start time: 2026-10-22 00:26:56.505905
 PROGRESS - Setting up the Environment
 PROGRESS - Running Pre Build
 INFO - Writing BuildToolsReports to /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Build/tasPkg/DEBUG_CLANGPDB/BUILD_TOOLS_REPORT
@@ -255,8 +255,8 @@ INFO - ------------------------------------------------
 INFO - --------------Cmd Output Starting---------------
 INFO - ------------------------------------------------
 INFO - Build environment: Linux-7.0.0-1017-azure-x86_64-with-glibc2.39
-INFO - SOURCE_DATE_EPOCH not set - using 1792628436
-INFO - Build start time: 00:20:36, Oct.22 2026
+INFO - SOURCE_DATE_EPOCH not set - using 1792628817
+INFO - Build start time: 00:26:57, Oct.22 2026
 INFO - 
 INFO - WORKSPACE        = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium
 INFO - PACKAGES_PATH    = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu_OEM_Sample:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium:/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicium-ACPI
@@ -266,9 +266,9 @@ INFO - CONF_PATH        = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu
 INFO - PYTHON_COMMAND   = /usr/bin/python3
 INFO - 
 INFO - 
-INFO - Architecture(s)  = AARCH64
 INFO - 
-INFO - Processing meta-data .Build target     = DEBUG
+INFO - Processing meta-data Architecture(s)  = AARCH64
+INFO - .Build target     = DEBUG
 INFO - Toolchain        = CLANGPDB
 INFO - 
 INFO - Active Platform          = /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc
@@ -277,22 +277,29 @@ INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/S
 INFO - 
 INFO - 
 INFO - build.py...
-INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc(44): error F001: Pcd (gArmTokenSpaceGuid.PcdGicRedistributorBase) defined in DSC is not declared in DEC files referenced in INF files in FDF. Arch: ['AARCH64']
-INFO - 
+INFO - /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdePkg/MdePkg.dec(33): error 000E: File/directory not found in workspace
+INFO - 	Library/MipiSysTLib/mipisyst/library/include is not found in packages path:
+INFO - 	/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/.
+INFO - 	/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei
+INFO - 	/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu
+INFO - 	/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Common/Mu_OEM_Sample
+INFO - 	/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore
+INFO - 	/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicon/Silicium
+INFO - 	/home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Silicium-ACPI
 INFO - 
 INFO - 
 INFO - - Failed -
-INFO - Build end time: 00:20:37, Oct.22 2026
+INFO - Build end time: 00:26:58, Oct.22 2026
 INFO - Build total time: 00:00:01
 INFO - 
 INFO - ------------------------------------------------
 INFO - --------------Cmd Output Finished---------------
 INFO - --------- Running Time (mm:ss): 00:01 ----------
-INFO - ----------- Return Code: 0x00000001 ------------
+INFO - ----------- Return Code: 0x0000000e ------------
 INFO - ------------------------------------------------
-ERROR - EDK2 #001 from /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Platforms/Huawei/tasPkg/tas.dsc(44): Pcd (gArmTokenSpaceGuid.PcdGicRedistributorBase) defined in DSC is not declared in DEC files referenced in INF files in FDF. Arch: ['AARCH64']
+ERROR - Build.py #000 from /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Mu_Basecore/MdePkg/MdePkg.dec(33): File/directory not found in workspace
 CRITICAL - Build failed
-PROGRESS - End time: 2026-10-22 00:20:37.698439	 Total time Elapsed: 0:00:01
+PROGRESS - End time: 2026-10-22 00:26:58.363572	 Total time Elapsed: 0:00:01
 SECTION - Log file is located at: /home/runner/work/Phoenix_uefi_try/Phoenix_uefi_try/Mu-Silicium/Build/BUILDLOG_tasPkg.txt
 SECTION - Summary
 ERROR - Error
