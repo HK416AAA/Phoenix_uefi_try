@@ -58,7 +58,7 @@ jobs:
           UNIXNU_ROOT: ${{ github.workspace }}/UniXNU
         run: |
           set -o pipefail
-          python3 build_uefi.py -d charlotte -r DEBUG -m charlotte -c 2>&1 | tee build-charlotte.log
+          python3 build_uefi.py -d charlotte -r DEBUG -c 2>&1 | tee build-charlotte.log
 
       - name: Verify firmware volume
         run: |
