@@ -13,6 +13,7 @@
 #define IPC_DES       0x2
 #define IPC_CMD_WDTT  0x00080201U
 #define IPC_TIMEOUT   24
+#define PMSG_BASE     0x2F0E0000UL
 
 STATIC EFI_EVENT  mIpcEvent;
 
@@ -23,6 +24,38 @@ DirectLog (
   )
 {
   SerialPortWrite ((UINT8 *)Text, AsciiStrLen (Text));
+}
+
+STATIC
+VOID
+MarkHigh (
+  IN CONST CHAR8  *Text
+  )
+{
+  volatile UINT8   *Data;
+  volatile UINT32  *Header;
+  UINTN             Index;
+  UINTN             Address;
+
+  Data   = (volatile UINT8 *)(UINTN)(PMSG_BASE + 12 + 0x8000);
+  Header = (volatile UINT32 *)(UINTN)PMSG_BASE;
+
+  for (Index = 0; Text[Index] != 0; Index++) {
+    Data[Index] = (UINT8)Text[Index];
+  }
+  Data[Index] = 0;
+
+  Header[1] = 0;
+  Header[2] = 0x11000;
+
+  for (Address = PMSG_BASE; Address < PMSG_BASE + 0x11000; Address += 64) {
+    __asm__ __volatile__ ("dc cvac, %0" :: "r" (Address) : "memory");
+  }
+  __asm__ __volatile__ ("dsb sy" ::: "memory");
+
+  Header[0] = 0x43474244;
+  __asm__ __volatile__ ("dc cvac, %0" :: "r" (Header) : "memory");
+  __asm__ __volatile__ ("dsb sy" ::: "memory");
 }
 
 STATIC
@@ -43,6 +76,7 @@ Lpm3Notify (
   *Lock = IPC_UNLOCK;
   if (*Lock != 0) {
     DirectLog ("TAS-IPC-LOCKFAIL\n");
+    MarkHigh ("TAS-IPC-LOCKFAIL");
     return FALSE;
   }
 
@@ -56,6 +90,7 @@ Lpm3Notify (
   Base[(Off + 0x00) / 4] = IPC_SRC;
   if ((Base[(Off + 0x00) / 4] & IPC_SRC) == 0) {
     DirectLog ("TAS-IPC-SRCFAIL\n");
+    MarkHigh ("TAS-IPC-SRCFAIL");
     return FALSE;
   }
 
@@ -67,6 +102,7 @@ Lpm3Notify (
   Base[(Off + 0x24) / 4] = IPC_TIMEOUT;
   Base[(Off + 0x1C) / 4] = IPC_SRC;
 
+  MarkHigh ("TAS-IPC-SENT");
   return TRUE;
 }
 
