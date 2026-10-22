@@ -82,13 +82,14 @@ jobs:
           cp platforms/Huawei/tasPkg/BootShim/BootShim.S Mu-Silicium/BootShim/BootShim.S
           python3 scripts/make-minimal-dtb.py Mu-Silicium/Resources/DTBs/tas.dtb
           grep -rl 'daifclr, #DAIF_WR_INT_BITS' Mu-Silicium/Mu_Basecore \
-            --include='*.S' > /tmp/daifclr_files || true
-          if [ -s /tmp/daifclr_files ]; then
-            xargs -r sed -i \
-              's/daifclr, #DAIF_WR_INT_BITS/daifclr, #DAIF_WR_IRQ_BIT/g' < /tmp/daifclr_files
-          fi
-          grep -rn 'daifclr' Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib \
-            --include='*.S' > daifclr-after.txt || true
+            --include='*.S' | xargs -r sed -i \
+              's/daifclr, #DAIF_WR_INT_BITS/daifclr, #DAIF_WR_IRQ_BIT/g' || true
+          grep -rl 'daifclr, #DAIF_WR_FIQ_BIT' Mu-Silicium/Mu_Basecore \
+            --include='*.S' | xargs -r sed -i \
+              's/daifclr, #DAIF_WR_FIQ_BIT/daifset, #DAIF_WR_FIQ_BIT/g' || true
+          grep -rn 'daifclr\|daifset\|ArmEnableFiq' \
+            Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib --include='*.S' \
+            > daifclr-after.txt || true
 
       - name: Check device exists
         working-directory: Mu-Silicium
