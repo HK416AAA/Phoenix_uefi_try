@@ -14,3 +14,7 @@ append_dtb         = true
 
 [boot_image]
 header_version = 2
+base           = 0x00000000
+kernel_offset  = 0x00000800
+tags_offset    = 0x01e00000
+dtb            = "Resources/DTBs/charlotte.dtb"
