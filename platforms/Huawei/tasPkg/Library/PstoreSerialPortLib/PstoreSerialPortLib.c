@@ -4,13 +4,14 @@
 #include <Library/SerialPortLib.h>
 
 //
-// ramoops console zone: pstore-mem 0x2f000000 (1 MiB),
-// record 0x20000 + console 0x80000 + pmsg 0x20000 -> console at +0x60000.
+// ramoops dmesg slot 0: pstore-mem 0x2f000000 (1 MiB),
+// record 0x20000 x 3 at +0x00000 / +0x20000 / +0x40000.
+// Use slot 0 so the stock kernel's console log does not overwrite it.
 //
-#define PSTORE_BASE  0x2F060000ULL
+#define PSTORE_BASE  0x2F000000ULL
 #define PSTORE_SIG   0x43474244U
-#define PSTORE_CAP   0x12000U
-#define PSTORE_LIMIT 0xF000U
+#define PSTORE_CAP   0x20000U
+#define PSTORE_LIMIT 0x1E000U
 
 STATIC UINTN  mOffset;
 
