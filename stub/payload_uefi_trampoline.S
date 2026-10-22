@@ -109,4 +109,5 @@ _start:
 
     /* next instruction is the first byte of BootShim.bin */
     b       2f
+    .balign 16
 2:
