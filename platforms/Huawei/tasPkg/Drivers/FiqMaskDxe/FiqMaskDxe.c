@@ -1,9 +1,7 @@
 #include <Uefi.h>
 #include <Library/BaseLib.h>
-#include <Library/DxeServicesTableLib.h>
 #include <Library/SerialPortLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Protocol/Cpu.h>
 
 #define IPC_BASE      0xFE101000UL
 #define IPC_LOCK      0x0A00
@@ -134,33 +132,53 @@ MarkHeartbeat (
 
 STATIC
 VOID
-TasSctrlMap (
-  VOID
+SmcCall (
+  IN UINT64   Function,
+  OUT UINT64  *Result
   )
 {
-  EFI_CPU_ARCH_PROTOCOL  *Cpu;
-  EFI_STATUS             Status;
+  register UINT64  X0 __asm__ ("x0") = Function;
+  register UINT64  X1 __asm__ ("x1") = 0;
+  register UINT64  X2 __asm__ ("x2") = 0;
+  register UINT64  X3 __asm__ ("x3") = 0;
+  register UINT64  X4 __asm__ ("x4") = 0;
+  register UINT64  X5 __asm__ ("x5") = 0;
+  register UINT64  X6 __asm__ ("x6") = 0;
+  register UINT64  X7 __asm__ ("x7") = 0;
 
-  Cpu = NULL;
-  Status = gBS->LocateProtocol (&gEfiCpuArchProtocolGuid, NULL, (VOID **)&Cpu);
-  if (EFI_ERROR (Status) || (Cpu == NULL)) {
-    DirectLog ("TAS-SCTRL-NOCPU\n");
-    return;
-  }
+  __asm__ __volatile__ (
+    "smc #0"
+    : "+r" (X0), "+r" (X1), "+r" (X2), "+r" (X3)
+    : "r" (X4), "r" (X5), "r" (X6), "r" (X7)
+    : "memory"
+    );
 
-  gDS->AddMemorySpace (
-        EfiGcdMemoryTypeMemoryMappedIo,
-        0xFA800000,
-        0x1000,
-        EFI_MEMORY_UC
-        );
+  Result[0] = X0;
+  Result[1] = X1;
+  Result[2] = X2;
+  Result[3] = X3;
+}
 
-  Status = Cpu->SetMemoryAttributes (Cpu, 0xFA800000, 0x1000, EFI_MEMORY_UC);
-  if (EFI_ERROR (Status)) {
-    DirectLog ("TAS-SCTRL-MAPFAIL\n");
-  } else {
-    DirectLog ("TAS-SCTRL-MAP\n");
-  }
+STATIC
+VOID
+SmcProbe (
+  IN UINT64  Function,
+  IN UINT32  BaseOffset
+  )
+{
+  UINT64  Result[4];
+
+  Result[0] = 0;
+  Result[1] = 0;
+  Result[2] = 0;
+  Result[3] = 0;
+
+  SmcCall (Function, Result);
+
+  MarkHighHex (BaseOffset + 0x00, "SMC0=", (UINT32)Result[0]);
+  MarkHighHex (BaseOffset + 0x20, "SMC1=", (UINT32)Result[1]);
+  MarkHighHex (BaseOffset + 0x40, "SMC2=", (UINT32)Result[2]);
+  MarkHighHex (BaseOffset + 0x60, "SMC3=", (UINT32)Result[3]);
 }
 
 STATIC
@@ -232,27 +250,11 @@ FiqMaskInitialize (
 {
   DirectLog ("TAS-IPC-RUN\n");
 
-  MarkHighAt (0x8800, "TAS-SCTRL-BEGIN");
-  TasSctrlMap ();
-  {
-    volatile UINT32  *Sctrl;
-    UINT32            ClkCtrl;
-    UINT32            ClkStat;
-    UINT32            Ctrl;
-    UINT32            Stat;
-
-    Sctrl   = (volatile UINT32 *)(UINTN)0xFA800000;
-    ClkCtrl = Sctrl[0x580 / 4];
-    ClkStat = Sctrl[0x584 / 4];
-    Ctrl    = Sctrl[0x588 / 4];
-    Stat    = Sctrl[0x58C / 4];
-
-    MarkHighHex (0x8840, "CLKCTRL=0x", ClkCtrl);
-    MarkHighHex (0x8880, "CLKSTAT=0x", ClkStat);
-    MarkHighHex (0x88C0, "OMCUCTL=0x", Ctrl);
-    MarkHighHex (0x8900, "OMCUSTA=0x", Stat);
-  }
-  MarkHighAt (0x8940, "TAS-SCTRL-DONE");
+  MarkHighAt (0x8780, "TAS-SMC-BEGIN");
+  SmcProbe (0xC6000150, 0x8800);
+  SmcProbe (0xC6000151, 0x8900);
+  SmcProbe (0xC6000152, 0x8A00);
+  MarkHighAt (0x8B00, "TAS-SMC-DONE");
 
   if (Lpm3Notify ()) {
     DirectLog ("TAS-IPC-SENT\n");
