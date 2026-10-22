@@ -41,7 +41,7 @@
   # GICv3
   #
   gArmTokenSpaceGuid.PcdGicDistributorBase|0xfe400000
-  gArmTokenSpaceGuid.PcdGicRedistributorBase|0xfe440000
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase|0xfe440000
 
   #
   # Generic timer
