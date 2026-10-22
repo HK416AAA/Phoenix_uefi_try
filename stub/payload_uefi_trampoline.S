@@ -59,15 +59,6 @@ _start:
     mov     x1, #0
     hvc     #0
 
-    /* Route PPIs to group 1 and mask group-0 FIQs (after pmsg + HHEE). */
-    movz    x1, #0xfe45, lsl #16
-    movk    x1, #0x0080
-    movn    w2, #0
-    str     w2, [x1]
-    msr     ICC_IGRPEN0_EL1, xzr
-    msr     daifset, #1
-    isb
-
     mov     x0, x19
     mov     x1, x20
     mov     x2, x21
