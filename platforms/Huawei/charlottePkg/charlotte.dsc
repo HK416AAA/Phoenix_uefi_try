@@ -51,8 +51,8 @@
   #
   # Simple frame buffer (GOP may not find it in the vendor DTB)
   #
-  gSiliciumPkgTokenSpaceGuid.PcdFrameBufferWidth|1840
-  gSiliciumPkgTokenSpaceGuid.PcdFrameBufferHeight|2800
+  gSiliciumPkgTokenSpaceGuid.PcdFrameBufferWidth|2800
+  gSiliciumPkgTokenSpaceGuid.PcdFrameBufferHeight|1840
   gSiliciumPkgTokenSpaceGuid.PcdFrameBufferColorDepth|32
 
   #

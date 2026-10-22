@@ -105,9 +105,9 @@ def main() -> int:
     b.prop_str("compatible", "simple-framebuffer")
     b.prop_str("status", "okay")
     b.prop_u32("reg", 0, 0x34380000, 0, 0x13AA000)
-    b.prop_u32("width", 1840)
-    b.prop_u32("height", 2800)
-    b.prop_u32("stride", 7360)
+    b.prop_u32("width", 2800)
+    b.prop_u32("height", 1840)
+    b.prop_u32("stride", 11200)
     b.prop_str("format", "x8b8g8r8")
     b.end()
 

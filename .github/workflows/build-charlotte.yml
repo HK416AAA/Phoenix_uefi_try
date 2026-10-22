@@ -54,6 +54,8 @@ jobs:
       - name: Generate charlotte DTB
         run: |
           python3 scripts/make-charlotte-dtb.py uefi-sheng/Resources/DTBs/charlotte.dtb
+          ls -l uefi-sheng/Resources/DTBs
+          test -s uefi-sheng/Resources/DTBs/charlotte.dtb
 
       - name: Install dependencies
         working-directory: uefi-sheng
@@ -85,6 +87,10 @@ jobs:
             echo
             echo "=== unixnu inf ==="
             tail -n 100 unixnu-inf.txt 2>/dev/null || true
+            echo
+            echo "=== dtbs ==="
+            ls -l uefi-sheng/Resources/DTBs 2>/dev/null || true
+            grep -n "mkbootimg\|--dtb\|DTB image" uefi-sheng/build-charlotte.log 2>/dev/null | tail -20 || true
             echo
             echo "=== Build.log ==="
             find uefi-sheng/Build -name 'Build.log' 2>/dev/null | while read -r f; do
