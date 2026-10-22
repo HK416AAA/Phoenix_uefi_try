@@ -1,7 +1,9 @@
 #include <Uefi.h>
 #include <Library/BaseLib.h>
+#include <Library/DxeServicesTableLib.h>
 #include <Library/SerialPortLib.h>
 #include <Library/UefiBootServicesTableLib.h>
+#include <Protocol/Cpu.h>
 
 #define IPC_BASE      0xFE101000UL
 #define IPC_LOCK      0x0A00
@@ -105,6 +107,53 @@ MarkHeartbeat (
 }
 
 STATIC
+VOID
+TasWdtMap (
+  VOID
+  )
+{
+  EFI_CPU_ARCH_PROTOCOL  *Cpu;
+  EFI_STATUS             Status;
+
+  Cpu = NULL;
+  Status = gBS->LocateProtocol (&gEfiCpuArchProtocolGuid, NULL, (VOID **)&Cpu);
+  if (EFI_ERROR (Status) || (Cpu == NULL)) {
+    DirectLog ("TAS-WDT-NOCPU\n");
+    return;
+  }
+
+  gDS->AddMemorySpace (
+        EfiGcdMemoryTypeMemoryMappedIo,
+        0xFA87C000,
+        0x3000,
+        EFI_MEMORY_UC
+        );
+
+  Status = Cpu->SetMemoryAttributes (Cpu, 0xFA87C000, 0x3000, EFI_MEMORY_UC);
+  if (EFI_ERROR (Status)) {
+    DirectLog ("TAS-WDT-MAPFAIL\n");
+  } else {
+    DirectLog ("TAS-WDT-MAP\n");
+  }
+}
+
+STATIC
+VOID
+TasWdtKick (
+  VOID
+  )
+{
+  volatile UINT32  *Base;
+
+  Base = (volatile UINT32 *)(UINTN)0xFA87C000;
+  Base[0x00 / 4] = 0x1AAEE533;
+  Base[0x18 / 4] = 1;
+  Base[0x04 / 4] = 1;
+  (void)Base[0x00 / 4];
+  (void)Base[0x04 / 4];
+}
+
+STATIC
 BOOLEAN
 Lpm3Notify (
   VOID
@@ -161,6 +210,7 @@ Lpm3Tick (
   IN VOID       *Context
   )
 {
+  TasWdtKick ();
   Lpm3Notify ();
 }
 
@@ -172,6 +222,10 @@ FiqMaskInitialize (
   )
 {
   DirectLog ("TAS-IPC-RUN\n");
+
+  TasWdtMap ();
+  TasWdtKick ();
+  DirectLog ("TAS-WDT-KICK\n");
 
   if (Lpm3Notify ()) {
     DirectLog ("TAS-IPC-SENT\n");

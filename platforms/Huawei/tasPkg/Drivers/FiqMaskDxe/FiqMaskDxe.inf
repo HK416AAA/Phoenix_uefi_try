@@ -15,9 +15,13 @@
 [LibraryClasses]
   BaseLib
   DebugLib
+  DxeServicesTableLib
   SerialPortLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
+
+[Protocols]
+  gEfiCpuArchProtocolGuid
 
 [Depex]
   gEfiCpuArchProtocolGuid
