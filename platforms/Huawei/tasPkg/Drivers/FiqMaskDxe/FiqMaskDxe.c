@@ -16,6 +16,7 @@
 #define PMSG_BASE     0x2F0E0000UL
 
 STATIC EFI_EVENT  mIpcEvent;
+STATIC UINT32     mHeartbeat;
 
 STATIC
 VOID
@@ -28,7 +29,8 @@ DirectLog (
 
 STATIC
 VOID
-MarkHigh (
+MarkHighAt (
+  IN UINT32        Offset,
   IN CONST CHAR8  *Text
   )
 {
@@ -37,7 +39,7 @@ MarkHigh (
   UINTN             Index;
   UINTN             Address;
 
-  Data   = (volatile UINT8 *)(UINTN)(PMSG_BASE + 12 + 0x8000);
+  Data   = (volatile UINT8 *)(UINTN)(PMSG_BASE + 12 + Offset);
   Header = (volatile UINT32 *)(UINTN)PMSG_BASE;
 
   for (Index = 0; Text[Index] != 0; Index++) {
@@ -56,6 +58,50 @@ MarkHigh (
   Header[0] = 0x43474244;
   __asm__ __volatile__ ("dc cvac, %0" :: "r" (Header) : "memory");
   __asm__ __volatile__ ("dsb sy" ::: "memory");
+}
+
+STATIC
+VOID
+MarkHigh (
+  IN CONST CHAR8  *Text
+  )
+{
+  MarkHighAt (0x8000, Text);
+}
+
+STATIC
+VOID
+MarkHeartbeat (
+  VOID
+  )
+{
+  CHAR8        Buffer[32];
+  CHAR8        Digits[12];
+  CONST CHAR8  *Prefix;
+  UINTN        Index;
+  UINTN        Count;
+  UINT32       Value;
+
+  Prefix = "TAS-HB-";
+  Index  = 0;
+  while (Prefix[Index] != 0) {
+    Buffer[Index] = Prefix[Index];
+    Index++;
+  }
+
+  Value = ++mHeartbeat;
+  Count = 0;
+  do {
+    Digits[Count++] = (CHAR8)('0' + (Value % 10));
+    Value /= 10;
+  } while (Value != 0);
+
+  while (Count != 0) {
+    Buffer[Index++] = Digits[--Count];
+  }
+  Buffer[Index] = 0;
+
+  MarkHighAt (0x9000, Buffer);
 }
 
 STATIC
@@ -103,6 +149,7 @@ Lpm3Notify (
   Base[(Off + 0x1C) / 4] = IPC_SRC;
 
   MarkHigh ("TAS-IPC-SENT");
+  MarkHeartbeat ();
   return TRUE;
 }
 

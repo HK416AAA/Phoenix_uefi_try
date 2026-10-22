@@ -98,6 +98,9 @@ jobs:
           else
             echo "exception handler not found" > exc-after.txt
           fi
+          python3 scripts/patch-bds-entry.py \
+            Mu-Silicium/Mu_Basecore/MdeModulePkg/Universal/BdsDxe/BdsEntry.c \
+            > bds-after.txt 2>&1 || true
 
       - name: Check device exists
         working-directory: Mu-Silicium
@@ -138,6 +141,7 @@ jobs:
           cp Mu-Silicium/build-uefi.log builds/tas-build.log 2>/dev/null || true
           cp daifclr-after.txt builds/daifclr.txt 2>/dev/null || true
           cp exc-after.txt builds/exc.txt 2>/dev/null || true
+          cp bds-after.txt builds/bds.txt 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f builds/tas-uefi.fd.gz
@@ -145,6 +149,7 @@ jobs:
           if [ -f builds/tas-build.log ]; then git add -f builds/tas-build.log; fi
           if [ -f builds/daifclr.txt ]; then git add -f builds/daifclr.txt; fi
           if [ -f builds/exc.txt ]; then git add -f builds/exc.txt; fi
+          if [ -f builds/bds.txt ]; then git add -f builds/bds.txt; fi
           git commit -m "tas uefi ${GITHUB_RUN_NUMBER}" || echo "no changes"
           published=0
           for attempt in 1 2 3 4 5; do
