@@ -29,4 +29,5 @@
 
   INF SiliciumPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 
+  INF tasPkg/Drivers/FiqMaskDxe/FiqMaskDxe.inf
   INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf

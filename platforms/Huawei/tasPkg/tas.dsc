@@ -78,3 +78,6 @@
   #
   SerialPortLib|tasPkg/Library/PstoreSerialPortLib/PstoreSerialPortLib.inf
   DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+
+[Components]
+  tasPkg/Drivers/FiqMaskDxe/FiqMaskDxe.inf
