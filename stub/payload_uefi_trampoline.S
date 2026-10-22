@@ -14,6 +14,10 @@ _start:
     mov     x21, x2
     mov     x22, x3
 
+    /* charlotte-style: keep SError and FIQ masked */
+    msr     daifset, #0x5
+    isb
+
     /* pmsg checkpoint at 0x2f0e0000: "TAS-TRAMP-OK\n" */
     movz    x1, #0x2f0e, lsl #16
 

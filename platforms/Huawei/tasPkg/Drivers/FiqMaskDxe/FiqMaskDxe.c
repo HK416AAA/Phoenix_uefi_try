@@ -37,7 +37,7 @@ FiqMaskInitialize (
   __asm__ __volatile__ ("dsb sy" ::: "memory");
   DirectLog ("TAS-GIC-DONE\n");
 
-  __asm__ __volatile__ ("msr daifset, #1" ::: "memory");
+  __asm__ __volatile__ ("msr daifset, #0x5" ::: "memory");
   __asm__ __volatile__ ("isb" ::: "memory");
   DirectLog ("TAS-DAIF-DONE\n");
 

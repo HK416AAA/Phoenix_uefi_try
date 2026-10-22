@@ -81,6 +81,13 @@ jobs:
           mkdir -p Mu-Silicium/BootShim
           cp platforms/Huawei/tasPkg/BootShim/BootShim.S Mu-Silicium/BootShim/BootShim.S
           python3 scripts/make-minimal-dtb.py Mu-Silicium/Resources/DTBs/tas.dtb
+          armdir="Mu-Silicium/Mu_Basecore/ArmPkg/Library/ArmLib"
+          if [ -d "$armdir" ]; then
+            grep -rl 'daifclr, #3' "$armdir" | xargs -r sed -i 's/daifclr, #3/daifclr, #2/g'
+            echo "patched ArmLib: keep FIQ masked"
+          else
+            echo "ArmLib not found at $armdir"
+          fi
 
       - name: Check device exists
         working-directory: Mu-Silicium
