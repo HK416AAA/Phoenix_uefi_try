@@ -14,6 +14,15 @@ _start:
     mov     x21, x2
     mov     x22, x3
 
+    /* Route PPIs to group 1 and mask group-0 FIQs. */
+    movz    x1, #0xfe45, lsl #16
+    movk    x1, #0x0080
+    movn    w2, #0
+    str     w2, [x1]
+    msr     ICC_IGRPEN0_EL1, xzr
+    msr     daifset, #1
+    isb
+
     /* pmsg checkpoint at 0x2f0e0000: "TAS-TRAMP-OK\n" */
     movz    x1, #0x2f0e, lsl #16
     movz    w2, #0x4154
