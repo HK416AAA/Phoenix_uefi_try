@@ -1,5 +1,11 @@
 Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:16:// DAIF bit definitions for writing through msr daifclr/sr daifset
 Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:34:  msr   daifclr, #DAIF_WR_ABORT_BIT
+Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:40:  msr   daifset, #DAIF_WR_ABORT_BIT
 Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:46:  msr   daifclr, #DAIF_WR_IRQ_BIT
-Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:58:  msr   daifclr, #DAIF_WR_FIQ_BIT
+Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:52:  msr   daifset, #DAIF_WR_IRQ_BIT
+Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:57:ASM_FUNC(ArmEnableFiq)
+Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:58:  msr   daifset, #DAIF_WR_FIQ_BIT
+Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:64:  msr   daifset, #DAIF_WR_FIQ_BIT
 Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:70:  msr   daifclr, #DAIF_WR_IRQ_BIT
+Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:76:  msr   daifset, #DAIF_WR_INT_BITS
+Mu-Silicium/Mu_Basecore/MdePkg/Library/ArmLib/AArch64/ArmLibSupportV8.S:82:  msr   daifset, #DAIF_WR_ALL
