@@ -1,0 +1,6 @@
+176:    default: return;
+264:      return;
+268:    ASSERT (FALSE);
+302:    CpuDeadLoop ();
+438:  /* ASSERT (FALSE); */
+439:  return;
