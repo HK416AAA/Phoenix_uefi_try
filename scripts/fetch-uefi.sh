@@ -33,9 +33,12 @@ init_submodules() {
   git -C "$DEST" submodule sync
   git -C "$DEST" submodule update --init --depth 1 "${SUBMODULES[@]}"
 
-  # libfdt is used by BaseFdtLib/DtPlatformDxe; its nested module is small.
-  git -C "$DEST/Mu_Basecore" submodule update --init --depth 1 \
-    MdePkg/Library/BaseFdtLib/libfdt || true
+  # DEC files reference include paths inside these direct submodules
+  # (MipiSysT, libfdt, brotli, oniguruma, libspdm, googletest, ...).
+  # Initialize only the direct level, never recurse into the test trees.
+  for sub in Mu_Basecore Common/Mu Common/Mu_OEM_Sample Silicium-ACPI; do
+    git -C "$DEST/$sub" submodule update --init --depth 1 || true
+  done
 }
 
 if [ -d "$DEST/.git" ]; then
