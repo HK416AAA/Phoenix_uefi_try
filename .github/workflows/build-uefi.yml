@@ -78,6 +78,8 @@ jobs:
           rm -rf Mu-Silicium/Platforms/Huawei/tasPkg
           cp -r platforms/Huawei/tasPkg Mu-Silicium/Platforms/Huawei/
           cp config/tas.toml Mu-Silicium/Resources/Configs/tas.toml
+          mkdir -p Mu-Silicium/BootShim
+          cp platforms/Huawei/tasPkg/BootShim/BootShim.S Mu-Silicium/BootShim/BootShim.S
           python3 scripts/make-minimal-dtb.py Mu-Silicium/Resources/DTBs/tas.dtb
 
       - name: Check device exists
