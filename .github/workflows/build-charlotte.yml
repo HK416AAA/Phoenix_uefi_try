@@ -51,6 +51,10 @@ jobs:
           cp -r platforms/Huawei/charlottePkg uefi-sheng/Platforms/Huawei/
           cp config/charlotte.toml uefi-sheng/Resources/Configs/charlotte.toml
 
+      - name: Generate charlotte DTB
+        run: |
+          python3 scripts/make-charlotte-dtb.py uefi-sheng/Resources/DTBs/charlotte.dtb
+
       - name: Install dependencies
         working-directory: uefi-sheng
         run: bash setup_env.sh -p apt
