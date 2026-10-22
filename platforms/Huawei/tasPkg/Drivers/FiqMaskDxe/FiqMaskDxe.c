@@ -186,7 +186,7 @@ FiqMaskInitialize (
                &mIpcEvent
                ) == EFI_SUCCESS)
     {
-      gBS->SetTimer (mIpcEvent, TimerPeriodic, 40000000ULL /* 4 s */);
+      gBS->SetTimer (mIpcEvent, TimerPeriodic, 10000000ULL /* 1 s */);
       DirectLog ("TAS-IPC-ARMED\n");
     }
   }

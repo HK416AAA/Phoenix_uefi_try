@@ -57,6 +57,53 @@ _start:
     b.lo    1b
     dsb     sy
 
+    /* TAS LPM3 IPC notify: 0xFE101000, lock 0xA00, ch29, stride 64 */
+    movz    x1, #0xfe10, lsl #16
+    movk    x1, #0x1000
+    movz    w2, #0xe551
+    movk    w2, #0x1acc, lsl #16
+    add     x3, x1, #0xa00
+    str     w2, [x3]
+    ldr     w2, [x3]
+    cbnz    w2, 12f
+
+    add     x4, x1, #0x740
+    mov     x6, #1000
+10:
+    ldr     w5, [x4, #0x10]
+    tst     w5, #0x10
+    b.ne    11f
+    subs    x6, x6, #1
+    b.ne    10b
+    b       12f
+
+11:
+    mov     w5, #1
+    str     w5, [x4, #0x00]
+    ldr     w5, [x4, #0x00]
+    tst     w5, #1
+    b.eq    12f
+
+    movn    w5, #0
+    str     w5, [x4, #0x14]
+    ldr     w5, [x4, #0x14]
+    bic     w5, w5, #2
+    str     w5, [x4, #0x14]
+
+    mov     w5, #2
+    str     w5, [x4, #0x04]
+    mov     w5, #1
+    str     w5, [x4, #0x10]
+    movz    w5, #0x0201
+    movk    w5, #0x0008, lsl #16
+    str     w5, [x4, #0x20]
+    mov     w5, #24
+    str     w5, [x4, #0x24]
+    mov     w5, #1
+    str     w5, [x4, #0x1c]
+
+12:
+
     /* HHEE TVM handshake */
     movz    x0, #0x108A
     movk    x0, #0xC600, lsl #16
