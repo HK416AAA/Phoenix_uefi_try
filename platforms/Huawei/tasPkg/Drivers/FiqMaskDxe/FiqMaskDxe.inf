@@ -11,11 +11,16 @@
 
 [Packages]
   MdePkg/MdePkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
 
 [LibraryClasses]
   BaseLib
   DebugLib
+  SerialPortLib
   UefiDriverEntryPoint
 
+[Protocols]
+  gHardwareInterruptProtocolGuid
+
 [Depex]
-  gEfiCpuArchProtocolGuid
+  gEfiCpuArchProtocolGuid AND gHardwareInterruptProtocolGuid
