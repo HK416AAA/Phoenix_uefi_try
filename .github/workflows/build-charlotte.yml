@@ -121,8 +121,10 @@ jobs:
           if [ -f uefi-sheng/Mu-charlotte.img ]; then
             cp uefi-sheng/Mu-charlotte.img builds/charlotte-boot.img
           fi
-          efi_xnu="$(find uefi-sheng/Build -name 'UniXNU.efi' | head -1)"
-          efi_db="$(find uefi-sheng/Build -name 'DarwinBoot.efi' | head -1)"
+          find uefi-sheng/Build -type f \( -name '*.efi' -o -name '*.dll' \) | sort > builds/efi-list.txt || true
+          grep -i -E 'unixnu|darwinboot' builds/efi-list.txt || true
+          efi_xnu="$(grep -i -E 'unixnu.*\.efi$' builds/efi-list.txt | head -1)"
+          efi_db="$(grep -i -E 'darwinboot.*\.efi$' builds/efi-list.txt | head -1)"
           if [ -n "$efi_xnu" ]; then cp "$efi_xnu" builds/charlotte-unixnu.efi; fi
           if [ -n "$efi_db" ]; then cp "$efi_db" builds/charlotte-darwinboot.efi; fi
           if [ -n "$efi_xnu" ]; then
@@ -141,6 +143,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f builds/charlotte-uefi.fd.gz
+          if [ -f builds/efi-list.txt ]; then git add -f builds/efi-list.txt; fi
           if [ -f builds/charlotte-bootshim.bin ]; then git add -f builds/charlotte-bootshim.bin; fi
           if [ -f builds/charlotte-boot.img ]; then git add -f builds/charlotte-boot.img; fi
           if [ -f builds/charlotte-unixnu.efi ]; then git add -f builds/charlotte-unixnu.efi; fi
