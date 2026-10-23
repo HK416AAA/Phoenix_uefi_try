@@ -15,6 +15,7 @@ on:
     paths:
       - .github/workflows/build-charlotte-kernel.yml
       - KERNEL-BUILD.md
+      - platforms/Huawei/charlottePkg/Resources/merge_charlotte_defconfig
 
 permissions:
   contents: read
