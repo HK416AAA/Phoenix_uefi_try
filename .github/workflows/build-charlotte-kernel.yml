@@ -38,13 +38,22 @@ jobs:
             /usr/local/share/boost "$AGENT_TOOLSDIRECTORY" || true
           df -h /
 
+      - name: Cache kernel source
+        id: kernel-cache
+        uses: actions/cache@v4
+        with:
+          path: Code_Opensource/kernel
+          key: charlotte-kernel-src-2024-10-09
+
       - name: Download official kernel source
+        if: steps.kernel-cache.outputs.cache-hit != 'true'
         run: |
           set -euo pipefail
           : "${SOURCE_URL:?set the CHARLOTTE_SOURCE_URL repository variable or source_url input}"
           curl -L --retry 3 --retry-delay 5 \
             -o source.tar.gz "$SOURCE_URL"
-          tar -xzf source.tar.gz
+          tar -xzf source.tar.gz Code_Opensource/kernel
+          rm -f source.tar.gz
           test -d Code_Opensource/kernel
           ls Code_Opensource/kernel | head
 
