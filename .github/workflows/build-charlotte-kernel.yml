@@ -9,6 +9,12 @@ on:
       stock_boot_url:
         description: "Optional stock MRO-W00 boot.img URL, to also produce boot-charlotte.img"
         required: false
+  push:
+    branches:
+      - charlotte-kernel-build
+    paths:
+      - .github/workflows/build-charlotte-kernel.yml
+      - KERNEL-BUILD.md
 
 permissions:
   contents: read
@@ -17,6 +23,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 240
+    env:
+      SOURCE_URL: ${{ inputs.source_url || vars.CHARLOTTE_SOURCE_URL }}
+      STOCK_BOOT_URL: ${{ inputs.stock_boot_url || vars.CHARLOTTE_STOCK_BOOT_URL }}
 
     steps:
       - name: Checkout
@@ -31,8 +40,9 @@ jobs:
       - name: Download official kernel source
         run: |
           set -euo pipefail
+          : "${SOURCE_URL:?set the CHARLOTTE_SOURCE_URL repository variable or source_url input}"
           curl -L --retry 3 --retry-delay 5 \
-            -o source.tar.gz "${{ inputs.source_url }}"
+            -o source.tar.gz "$SOURCE_URL"
           tar -xzf source.tar.gz
           test -d Code_Opensource/kernel
           ls Code_Opensource/kernel | head
@@ -74,11 +84,11 @@ jobs:
           test -s "$GITHUB_WORKSPACE/out-kernel/arch/arm64/boot/Image.gz"
 
       - name: Pack stock boot.img (optional)
-        if: ${{ inputs.stock_boot_url != '' }}
+        if: env.STOCK_BOOT_URL != ''
         run: |
           set -euo pipefail
           curl -L --retry 3 --retry-delay 5 \
-            -o stock-boot.img "${{ inputs.stock_boot_url }}"
+            -o stock-boot.img "$STOCK_BOOT_URL"
           bash "$GITHUB_WORKSPACE/scripts/pack-charlotte-boot.sh" \
             stock-boot.img \
             "$GITHUB_WORKSPACE/out-kernel/arch/arm64/boot/Image.gz" \

@@ -14,13 +14,19 @@ MODULE_SIG off, EFI/ACE_ENABLE_TVM off) and publishes `Image.gz`.
    - `MRO-W00_HarmonyOS4.2.0_Opensource.tar.gz`
    - optionally the stock `boot.img`
 2. Copy the release asset URLs.
+3. Settings -> Secrets and variables -> Actions -> **Variables**:
+   - `CHARLOTTE_SOURCE_URL` = source tar URL
+   - `CHARLOTTE_STOCK_BOOT_URL` = stock boot.img URL (optional)
 
 ## Run
 
-Actions -> `build-charlotte-kernel` -> Run workflow:
+- Push to `charlotte-kernel-build` (the workflow file/README paths trigger it), or
+- Actions -> `build-charlotte-kernel` -> Run workflow:
+  - `source_url`: the release asset URL of the source tar
+  - `stock_boot_url` (optional): the stock boot.img URL
 
-- `source_url`: the release asset URL of the source tar
-- `stock_boot_url` (optional): the stock boot.img URL
+If the first push runs before the variables are set, it fails immediately at
+the URL check; set the variables and re-run the job.
 
 Artifacts:
 
