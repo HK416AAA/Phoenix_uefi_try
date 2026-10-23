@@ -27,7 +27,7 @@ working TAS Mu-Silicium skeleton and the 9000S charlotte DTS.
 
 - `charlotte.dsc/fdf`, `DeviceBuild.py`, `Include/*`
 - `Library/MemoryMapLib` — FD `0x80000000`/3 MiB, stack `0x80300000`, heap `0x80400000`/64 MiB
-- `Library/PstoreSerialPortLib` — pmsg at `0x2fd20000`
+- `Library/PstoreSerialPortLib` — pmsg at `0x2fce0000` (ramoops: 0x2fc40000 + record 0x80000 + console 0x20000)
 - `Drivers/FiqMaskDxe` — SError + FIQ mask only (no TAS IOMCU/SMC)
 - `UniXNU` components wired into DSC/FDF:
   - `UniXNUPkg/Application/UniXNU/UniXNU.inf`
