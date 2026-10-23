@@ -66,3 +66,109 @@ then overlays this package to `uefi-sheng/Platforms/Huawei/charlottePkg` and
 
 The first build is expected to need the vendor module import before it can
 produce a bootable image.
+
+## Official kernel Image replacement (charlotte-mainline style)
+
+The stock 9010 boot.img kernel is a Huawei `_ARMd` secure image loaded by the
+TEE UEFI `DLaKre`/`DecryptKernel`. A custom kernel is booted by replacing the
+kernel field of the stock boot.img with a self-built `Image.gz`.
+
+Official build inputs:
+
+```
+Code_Opensource/kernel                      # Huawei HarmonyOS 4.2 source
+arch/arm64/configs/merge_charlotte_defconfig
+make ARCH=arm64 O=../out merge_charlotte_defconfig
+make ARCH=arm64 O=../out -j8
+=> out/arch/arm64/boot/Image.gz
+```
+
+This tree ships `Resources/merge_charlotte_defconfig`, generated from the
+stock `/proc/config.gz` (`MRO-W00` 2024-10-09 build) with:
+
+```
+CONFIG_KEXEC=y
+CONFIG_KEXEC_FILE=y
+CONFIG_DEVMEM=y
+# CONFIG_MODULE_SIG is not set
+# CONFIG_EFI is not set
+# CONFIG_ACE_ENABLE_TVM is not set
+```
+
+- `KEXEC_FILE`/`DEVMEM` are for the second stage (LinuxBoot/UEFI payload).
+- `EFI` stays off: the TEE UEFI loads the raw Image, not an EFI stub.
+- `MODULE_SIG` is off so the custom build does not need Huawei's signing key.
+- `ACE_ENABLE_TVM` stays off: the 9010 uses FF-A/HHEE, unlike the 9000S
+  charlotte/TAS TVM path.
+
+Scripts:
+
+```
+./scripts/build-charlotte-kernel.sh <Code_Opensource/kernel> [out]
+./scripts/pack-charlotte-boot.sh <stock-boot.img> <out>/arch/arm64/boot/Image.gz
+```
+
+`pack-charlotte-boot.sh` uses `repack-bootimg.py --keep-tail`, preserving the
+stock ramdisk, DTB and AVB footer. The TEE UEFI's `hvb`/`DecryptKernel` may
+still reject the modified kernel; unlock/decrypt secboot first
+(`README_Version.txt`), and keep the image in the stock boot.img layout.
+
+## HHEE on 9010: FF-A, not TVM
+
+Official config:
+
+```
+CONFIG_ARM_FFA_TRANSPORT=y
+CONFIG_ARM_FFA_SMCCC=y
+CONFIG_FFA_SUPPORT=y
+CONFIG_UFS_FFA_SUPPORT=y
+CONFIG_DPU_FFA_SUPPORT=y
+CONFIG_CLOCK_SUPPORT_FFA=y
+CONFIG_IP_REGULATOR_SUPPORT_FFA=y
+CONFIG_RPMB_FFA_SUPPORT=y
+CONFIG_EFUSE_SUPPORT_FFA=y
+CONFIG_DDRC_SUPPORT_FFA=y
+CONFIG_NPU_FFA_SUPPORT=y
+```
+
+`hkip_hhee.h` still defines `HHEE_HVC_ENABLE_TVM 0xC600108A`, but the 9010
+`merge_charlotte_defconfig` has `CONFIG_ACE_ENABLE_TVM` **off**, and its
+`head.S` does not call `hkip_tvm_enable`. The 9010 HHEE mediation is via
+**FF-A** for UFS/DPU/clock/regulator/RPMB, not the 9000S/TAS TVM handshake.
+
+Reference (9000S charlotte early boot):
+
+```
+msr  daifset, #0x4        // SError 0xbe000011
+...
+bl   __cpu_setup
+bl   hkip_tvm_enable      // CONFIG_ACE_ENABLE_TVM
+b    __primary_switch
+```
+
+`hkip_hvc.S` dispatches HHEE HVCs only when `ARM64_HAS_HHEE` is present.
+
+## UEFI/UEFI payload second stage
+
+The UEFI cannot be parasitized in the stock kernel: `KEXEC=n`, `EFI=n`,
+`DEVMEM=n`, `MODULE_SIG_FORCE=y`. The custom Image, however, is our build and
+can enable `KEXEC_FILE`/`DEVMEM`:
+
+```
+stock TEE UEFI
+  -> custom Image.gz (boot.img kernel)
+  -> initramfs
+  -> kexec_file_load(UEFI payload, PE/COFF)
+  -> EDK2 UEFI Boot Services
+  -> DarwinBoot / UniXNU
+```
+
+HHEE/FF-A considerations for the payload:
+
+- The 9010 UFS/DPU/clock/regulator/RPMB are FF-A mediated; the UEFI payload
+  needs the corresponding FF-A drivers, not just raw MMIO.
+- The fixed framebuffer stays usable: 2800x1840, stride 11200, `x8b8g8r8`
+  (logo buffer `0x36AD3850` in the live FDT).
+- The keepalive must run in the payload/XNU: V500 `0xfae7c000` and LPM3 IPC
+  `0xff870000` (same as charlotte, 24 s timeout).
+
