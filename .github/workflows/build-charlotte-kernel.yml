@@ -1,0 +1,98 @@
+name: build-charlotte-kernel
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "MRO-W00_HarmonyOS4.2.0_Opensource.tar.gz URL (release asset or Huawei mirror)"
+        required: true
+      stock_boot_url:
+        description: "Optional stock MRO-W00 boot.img URL, to also produce boot-charlotte.img"
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc \
+            /usr/local/share/boost "$AGENT_TOOLSDIRECTORY" || true
+          df -h /
+
+      - name: Download official kernel source
+        run: |
+          set -euo pipefail
+          curl -L --retry 3 --retry-delay 5 \
+            -o source.tar.gz "${{ inputs.source_url }}"
+          tar -xzf source.tar.gz
+          test -d Code_Opensource/kernel
+          ls Code_Opensource/kernel | head
+
+      - name: Fetch toolchain
+        run: |
+          set -euo pipefail
+          git clone --depth 1 \
+            https://github.com/HK416AAA/aarch64-linux-android-4.9.git gcc
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 \
+            clang-prebuilt
+          git -C clang-prebuilt sparse-checkout set clang-r353983c
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq bison flex libssl-dev libelf-dev bc \
+            device-tree-compiler
+          sudo ln -sf /lib/x86_64-linux-gnu/libtinfo.so.6 \
+            /usr/lib/x86_64-linux-gnu/libtinfo.so.5 || true
+
+      - name: Build Image.gz
+        run: |
+          set -o pipefail
+          cd Code_Opensource/kernel
+          cp "$GITHUB_WORKSPACE/platforms/Huawei/charlottePkg/Resources/merge_charlotte_defconfig" \
+            arch/arm64/configs/merge_charlotte_defconfig
+          export ARCH=arm64
+          export CROSS_COMPILE="$GITHUB_WORKSPACE/gcc/bin/aarch64-linux-android-"
+          export PATH="$GITHUB_WORKSPACE/clang-prebuilt/clang-r353983c/bin:$PATH"
+          export CC=clang
+          export CLANG_TRIPLE=aarch64-linux-gnu-
+          mkdir -p "$GITHUB_WORKSPACE/out-kernel"
+          make O="$GITHUB_WORKSPACE/out-kernel" merge_charlotte_defconfig 2>&1 \
+            | tee "$GITHUB_WORKSPACE/out-kernel/build.log"
+          make O="$GITHUB_WORKSPACE/out-kernel" -j"$(nproc)" 2>&1 \
+            | tee -a "$GITHUB_WORKSPACE/out-kernel/build.log"
+          test -s "$GITHUB_WORKSPACE/out-kernel/arch/arm64/boot/Image.gz"
+
+      - name: Pack stock boot.img (optional)
+        if: ${{ inputs.stock_boot_url != '' }}
+        run: |
+          set -euo pipefail
+          curl -L --retry 3 --retry-delay 5 \
+            -o stock-boot.img "${{ inputs.stock_boot_url }}"
+          bash "$GITHUB_WORKSPACE/scripts/pack-charlotte-boot.sh" \
+            stock-boot.img \
+            "$GITHUB_WORKSPACE/out-kernel/arch/arm64/boot/Image.gz" \
+            "$GITHUB_WORKSPACE/boot-charlotte.img"
+
+      - name: Upload kernel artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: charlotte-kernel
+          path: |
+            out-kernel/arch/arm64/boot/Image.gz
+            out-kernel/System.map
+            out-kernel/.config
+            out-kernel/build.log
+            boot-charlotte.img
+          if-no-files-found: warn
