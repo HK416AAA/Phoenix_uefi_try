@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define PSTORE_BASE 0x2FC400000UL   /* charlotte pstore-mem */
+#define PSTORE_BASE 0x2FC420000UL   /* charlotte console zone (pstore-mem + record 0x20000) */
 #define PSTORE_SIG  0x43474244U
 #define PMSG_BASE   0x2FC4A0000UL    /* charlotte pmsg = record 0x20000 + console 0x80000 */
 #define PMSG_SIZE   0x20000U
@@ -92,12 +92,12 @@ void payload_main(uint64_t dtb)
 {
     (void)dtb;
 
-    pmsg_write("CHARLOTTE-C-1\n");
+    pstore_mark("CHARLOTTE-C-1\n");
     hhee_tvm_enable();
-    pmsg_write("CHARLOTTE-C-2\n");
+    pstore_mark("CHARLOTTE-C-2\n");
     fb_fill(FB_LCD, 0xFFFFFFFFU);
-    pmsg_write("CHARLOTTE-C-FB1\n");
+    pstore_mark("CHARLOTTE-C-FB1\n");
     fb_fill(FB_CANVAS, 0xFFFFFFFFU);
-    pmsg_write("CHARLOTTE-C-FB2\n");
-    pmsg_write("CHARLOTTE-C-DONE\n");
+    pstore_mark("CHARLOTTE-C-FB2\n");
+    pstore_mark("CHARLOTTE-C-DONE\n");
 }
