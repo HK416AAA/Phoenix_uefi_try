@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define PSTORE_BASE 0x2FC420000UL   /* charlotte console zone (pstore-mem + record 0x20000) */
+#define PSTORE_BASE 0x2FC60000UL   /* console zone = ramoops mem_address 0x2FC40000 + record 0x20000 */
 #define PSTORE_SIG  0x43474244U
 #define PMSG_BASE   0x2FC4A0000UL    /* charlotte pmsg = record 0x20000 + console 0x80000 */
 #define PMSG_SIZE   0x20000U
@@ -23,7 +23,7 @@ static void cache_clean(const void *start, size_t len)
     asm volatile("dsb sy" ::: "memory");
 }
 
-static void pstore_mark(const char *s)
+void pstore_mark(const char *s)
 {
     volatile uint32_t *z = (volatile uint32_t *)PSTORE_BASE;
     volatile char *data = (volatile char *)(PSTORE_BASE + 12);
@@ -92,12 +92,12 @@ void payload_main(uint64_t dtb)
 {
     (void)dtb;
 
-    pstore_mark("CHARLOTTE-C-1\n");
+    pstore_mark("CHARLOTTE-C: 1\n");
     hhee_tvm_enable();
-    pstore_mark("CHARLOTTE-C-2\n");
+    pstore_mark("CHARLOTTE-C: 2\n");
     fb_fill(FB_LCD, 0xFFFFFFFFU);
-    pstore_mark("CHARLOTTE-C-FB1\n");
+    pstore_mark("CHARLOTTE-C: FB1\n");
     fb_fill(FB_CANVAS, 0xFFFFFFFFU);
-    pstore_mark("CHARLOTTE-C-FB2\n");
-    pstore_mark("CHARLOTTE-C-DONE\n");
+    pstore_mark("CHARLOTTE-C: FB2\n");
+    pstore_mark("CHARLOTTE-C: DONE\n");
 }

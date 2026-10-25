@@ -21,12 +21,20 @@ _real_start:
     mov     x21, x2
     mov     x22, x3
 
+    adrp    x0, shim_enter
+    add     x0, x0, :lo12:shim_enter
+    bl      pstore_mark
+
     adrp    x0, stack_top
     add     x0, x0, :lo12:stack_top
     mov     sp, x0
 
     mov     x0, x19
     bl      payload_main
+
+    adrp    x0, shim_back
+    add     x0, x0, :lo12:shim_back
+    bl      pstore_mark
 
     mov     x0, x19
     mov     x1, x20
@@ -37,6 +45,13 @@ _real_start:
     movz    x10, #0x0111, lsl #16
     sub     x9, x9, x10
     br      x9
+
+    .section .rodata
+    .align 3
+shim_enter:
+    .asciz "CHARLOTTE-SHIM: enter\n"
+shim_back:
+    .asciz "CHARLOTTE-SHIM: back\n"
 
     .section .bss
     .align 4
