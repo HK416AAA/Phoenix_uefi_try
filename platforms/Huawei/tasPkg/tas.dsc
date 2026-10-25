@@ -81,3 +81,4 @@
 
 [Components]
   tasPkg/Drivers/FiqMaskDxe/FiqMaskDxe.inf
+  tasPkg/Drivers/DpuInitDxe/DpuInitDxe.inf
