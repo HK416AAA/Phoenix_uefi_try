@@ -118,4 +118,30 @@ jobs:
             builds/payload-fb-wdt.bin.gz builds/payload-pstore.bin.gz \
             builds/payload-c.bin.gz builds/payload-uefi-trampoline.bin
           git commit -m "stub build ${GITHUB_RUN_NUMBER}" || echo "no changes"
-          git push origin HEAD:main
+          git push origin HEAD:charlotte-9010-unixnu
+
+      - name: Pack flashable UEFI boot image
+        run: |
+          python3 - <<'PY'
+          import gzip, struct
+          from pathlib import Path
+
+          shim = Path("out/payload-c.bin").read_bytes()
+          fd = gzip.decompress(Path("builds/charlotte-uefi.fd.gz").read_bytes())
+          size = struct.unpack_from("<Q", shim, 0x10)[0]
+          blob = shim + fd
+          if len(blob) < size:
+              blob += b"\0" * (size - len(blob))
+          elif len(blob) > size:
+              print("combined > image_size, keeping combined")
+          Path("builds/charlotte-uefi-kernel.bin").write_bytes(blob)
+          print("kernel", len(blob), "image_size", hex(size))
+          PY
+          python3 scripts/repack-bootimg.py \
+            --stock builds/charlotte-boot.img \
+            --kernel builds/charlotte-uefi-kernel.bin \
+            --out builds/charlotte-uefi-boot.img \
+            --no-gzip-check --no-dtb-check
+          git add -f builds/charlotte-uefi-kernel.bin builds/charlotte-uefi-boot.img
+          git commit -m "uefi boot ${GITHUB_RUN_NUMBER}" || echo "no changes"
+          git push origin HEAD:charlotte-9010-unixnu

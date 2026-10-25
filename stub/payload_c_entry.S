@@ -6,6 +6,16 @@
     .global _start
 
 _start:
+    b       _real_start
+    .long   0                    /* code1 (unused) */
+    .quad   0                    /* text_offset */
+    .quad   _image_size          /* image_size (from the linker script) */
+    .quad   0xa                  /* flags: PIE | 4 KiB pages */
+    .quad   0, 0, 0              /* reserved */
+    .ascii  "ARM\x64"            /* magic at offset 0x38 */
+    .long   0                    /* reserved */
+
+_real_start:
     mov     x19, x0
     mov     x20, x1
     mov     x21, x2
