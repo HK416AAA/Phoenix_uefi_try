@@ -118,5 +118,7 @@ jobs:
           git add -f builds/stub.bin.gz builds/stub-reset.bin.gz \
             builds/payload-fb-wdt.bin.gz builds/payload-pstore.bin.gz \
             builds/payload-c.bin.gz builds/payload-uefi-trampoline.bin
+          git fetch origin main
+          git rebase --autostash origin/main || git merge --no-edit origin/main
           git commit -m "stub build ${GITHUB_RUN_NUMBER}" || echo "no changes"
           git push origin HEAD:main

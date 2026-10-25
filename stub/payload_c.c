@@ -5,7 +5,7 @@
 #define PSTORE_SIG  0x43474244U
 #define FB_LCD      0x36500000UL
 #define FB_CANVAS   0x36ea3f80UL
-#define FB_PIXELS   (1080U * 7020U)
+#define FB_PIXELS   (1080U * 2340U)
 
 static uint32_t woff;
 
@@ -100,7 +100,7 @@ void payload_main(uint64_t dtb)
     (void)dtb;
 
     pstore_mark("TAS-DPU: lcd=0x36500000 canvas=0x36ea3f80\n");
-    pstore_mark("TAS-DPU: 1080x7020 stride=4320 RGB565 16bit\n");
+    pstore_mark("TAS-DPU: 1080x2340 stride=4320 RGB565 16bit\n");
     pstore_mark("TAS-C-1\n");
     hhee_tvm_enable();
     pstore_mark("TAS-C-2\n");
