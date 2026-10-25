@@ -61,9 +61,9 @@ static void draw_rect(volatile uint16_t *p, int x, int y, int rw, int rh, uint16
             p[j * 1080 + i] = c;
 }
 
-static void dpu_draw_logo(void)
+static void dpu_draw_logo(uintptr_t base)
 {
-    volatile uint16_t *p = (volatile uint16_t *)FB_LCD;
+    volatile uint16_t *p = (volatile uint16_t *)base;
 
     draw_rect(p, 200, 500, 680, 400, 0x0000);
     draw_rect(p, 230, 530, 620, 340, 0xFFFF);
@@ -108,7 +108,9 @@ void payload_main(uint64_t dtb)
     pstore_mark("TAS-C-FB1\n");
     fb_fill16(FB_CANVAS, 0xFFFF);
     pstore_mark("TAS-C-FB2\n");
-    dpu_draw_logo();
+    dpu_draw_logo(FB_LCD);
+    dpu_draw_logo(FB_CANVAS);
+    pstore_mark("TAS-DPU: dual-buffer-ok\n");
     pstore_mark("TAS-DPU: logo-ok\n");
     pstore_mark("TAS-C-DONE\n");
 }
