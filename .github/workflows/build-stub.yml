@@ -106,6 +106,10 @@ jobs:
 
       - name: Publish stubs to repo
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git rebase --autostash origin/main || git merge --no-edit origin/main
           mkdir -p builds
           cp out/stub.bin.gz builds/stub.bin.gz
           cp out/stub-reset.bin.gz builds/stub-reset.bin.gz
@@ -113,12 +117,8 @@ jobs:
           cp out/payload-pstore.bin.gz builds/payload-pstore.bin.gz
           cp out/payload-c.bin.gz builds/payload-c.bin.gz
           cp out/payload-uefi-trampoline.bin builds/payload-uefi-trampoline.bin
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f builds/stub.bin.gz builds/stub-reset.bin.gz \
             builds/payload-fb-wdt.bin.gz builds/payload-pstore.bin.gz \
             builds/payload-c.bin.gz builds/payload-uefi-trampoline.bin
-          git fetch origin main
-          git rebase --autostash origin/main || git merge --no-edit origin/main
           git commit -m "stub build ${GITHUB_RUN_NUMBER}" || echo "no changes"
           git push origin HEAD:main
