@@ -18,7 +18,7 @@ _start:
     str     w2, [x1, #0xC00]
     movz    w2, #0x0010, lsl #16
     str     w2, [x1]
-    mov     w2, #3
+    mov     w2, #1
     str     w2, [x1, #8]
 
     /* lcd_dispbuf */

@@ -19,9 +19,10 @@ WdtFeed (
   /* SP805: unlock, load, enable, reload */
   Wdt[0xC00 / 4] = 0x1ACCE551;
   Wdt[0x000 / 4] = 0x00100000;
-  Wdt[0x008 / 4] = 0x3;
+  Wdt[0x008 / 4] = 0x1;
   Wdt[0x000 / 4] = 0x00100000;
   Wdt[0x00C / 4] = 1;
+  Wdt[0xC00 / 4] = 1;
 }
 
 STATIC
