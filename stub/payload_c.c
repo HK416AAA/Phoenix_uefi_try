@@ -54,6 +54,39 @@ static void hhee_tvm_enable(void)
                    "memory");
 }
 
+static void draw_rect(volatile uint32_t *p, int x, int y, int rw, int rh, uint32_t c)
+{
+    for (int j = y; j < y + rh; j++)
+        for (int i = x; i < x + rw; i++)
+            p[j * 1080 + i] = c;
+}
+
+static void dpu_draw_logo(void)
+{
+    volatile uint32_t *p = (volatile uint32_t *)FB_LCD;
+
+    draw_rect(p, 200, 500, 680, 400, 0x00000000U);
+    draw_rect(p, 230, 530, 620, 340, 0x00FFFFFFU);
+
+    draw_rect(p, 270, 600, 40, 120, 0x00000000U);
+    draw_rect(p, 270, 700, 120, 20, 0x00000000U);
+    draw_rect(p, 350, 600, 40, 120, 0x00000000U);
+    draw_rect(p, 390, 620, 30, 100, 0x00000000U);
+    draw_rect(p, 390, 620, 80, 20, 0x00000000U);
+    draw_rect(p, 450, 620, 30, 100, 0x00000000U);
+    draw_rect(p, 490, 620, 30, 20, 0x00000000U);
+    draw_rect(p, 490, 660, 30, 60, 0x00000000U);
+    draw_rect(p, 530, 620, 20, 20, 0x00000000U);
+    draw_rect(p, 590, 620, 20, 20, 0x00000000U);
+    draw_rect(p, 550, 640, 20, 20, 0x00000000U);
+    draw_rect(p, 570, 660, 20, 20, 0x00000000U);
+    draw_rect(p, 550, 680, 20, 20, 0x00000000U);
+    draw_rect(p, 590, 700, 20, 20, 0x00000000U);
+    draw_rect(p, 530, 700, 20, 20, 0x00000000U);
+
+    draw_rect(p, 270, 760, 520, 20, 0x00FF0000U);
+}
+
 static void fb_fill(uintptr_t base, uint32_t color)
 {
     volatile uint32_t *p = (volatile uint32_t *)base;
@@ -66,6 +99,8 @@ void payload_main(uint64_t dtb)
 {
     (void)dtb;
 
+    pstore_mark("TAS-DPU: lcd=0x36500000 canvas=0x36ea3f80\n");
+    pstore_mark("TAS-DPU: 1080x2340 stride=4320 RGBA8888\n");
     pstore_mark("TAS-C-1\n");
     hhee_tvm_enable();
     pstore_mark("TAS-C-2\n");
@@ -73,5 +108,7 @@ void payload_main(uint64_t dtb)
     pstore_mark("TAS-C-FB1\n");
     fb_fill(FB_CANVAS, 0xFFFFFFFFU);
     pstore_mark("TAS-C-FB2\n");
+    dpu_draw_logo();
+    pstore_mark("TAS-DPU: logo-ok\n");
     pstore_mark("TAS-C-DONE\n");
 }
