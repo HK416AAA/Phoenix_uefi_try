@@ -21,9 +21,21 @@ _real_start:
     mov     x21, x2
     mov     x22, x3
 
-    adrp    x0, shim_enter
-    add     x0, x0, :lo12:shim_enter
-    bl      pstore_mark
+    /* Raw console marker: DBGC + start=0 + size + text, no C call. */
+    movz    x1, #0x2FC6, lsl #16
+    movz    w2, #0x4347
+    movk    w2, #0x4244, lsl #16
+    str     w2, [x1]
+    str     wzr, [x1, #4]
+    mov     w3, #0x11000
+    str     w3, [x1, #8]
+    adr     x4, shim_enter
+    add     x5, x1, #12
+1:  ldrb    w6, [x4], #1
+    cbz     w6, 2f
+    strb    w6, [x5], #1
+    b       1b
+2:  dsb     sy
 
     adrp    x0, stack_top
     add     x0, x0, :lo12:stack_top
