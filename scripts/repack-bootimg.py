@@ -38,6 +38,8 @@ def main() -> int:
                         help="preserve the original bytes after the DTBO (AVB footer/signature)")
     parser.add_argument("--pad-to", default=None,
                         help="pad output with zeros (default: stock file size, overwrites stale AVB tails)")
+    parser.add_argument("--no-dtb-check", action="store_true",
+                        help="skip DTBO/FDT magic validation of the stock dtb field")
     args = parser.parse_args()
 
     try:
@@ -60,7 +62,7 @@ def main() -> int:
     dtb_size = stock.get("dtb_size") or 0
     dtb = raw[dtb_off:dtb_off + dtb_size]
 
-    if dtb_size and dtb[:4] not in (DTBO_MAGIC, FDT_MAGIC):
+    if dtb_size and not args.no_dtb_check and dtb[:4] not in (DTBO_MAGIC, FDT_MAGIC):
         print(f"FAIL: no DTBO/FDT magic at {dtb_off:#x}: {dtb[:4].hex()}", file=sys.stderr)
         return 1
 

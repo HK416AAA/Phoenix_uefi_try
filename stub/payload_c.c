@@ -1,13 +1,17 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define PSTORE_BASE 0x2f060000UL
+#define PSTORE_BASE 0x2FC400000UL   /* charlotte pstore-mem */
 #define PSTORE_SIG  0x43474244U
+#define PMSG_BASE   0x2FC4A0000UL    /* charlotte pmsg = record 0x20000 + console 0x80000 */
+#define PMSG_SIZE   0x20000U
+#define PRZ_SIG     0x50525AU
 #define FB_LCD      0x36500000UL
 #define FB_CANVAS   0x36ea3f80UL
 #define FB_PIXELS   (1080U * 2340U)
 
 static uint32_t woff;
+static uint32_t pmsg_off;
 
 static void cache_clean(const void *start, size_t len)
 {
@@ -41,6 +45,28 @@ static void pstore_mark(const char *s)
     cache_clean((const void *)PSTORE_BASE, 64);
 }
 
+static void pmsg_write(const char *s)
+{
+    volatile uint32_t *h = (volatile uint32_t *)PMSG_BASE;
+    volatile char *data = (volatile char *)(PMSG_BASE + 12);
+    size_t n = 0;
+
+    while (s[n])
+        n++;
+    if (pmsg_off + n > PMSG_SIZE - 12)
+        pmsg_off = 0;
+
+    for (size_t i = 0; i < n; i++)
+        data[pmsg_off + i] = s[i];
+    pmsg_off += n;
+
+    h[1] = 0;
+    h[2] = pmsg_off > 0x11000 ? pmsg_off : 0x11000;
+    cache_clean((const void *)PMSG_BASE, 0x12000);
+    h[0] = PRZ_SIG;
+    cache_clean((const void *)PMSG_BASE, 64);
+}
+
 static void hhee_tvm_enable(void)
 {
     register uint64_t x0 asm("x0") = 0xC600108AUL;
@@ -66,12 +92,12 @@ void payload_main(uint64_t dtb)
 {
     (void)dtb;
 
-    pstore_mark("TAS-C-1\n");
+    pmsg_write("CHARLOTTE-C-1\n");
     hhee_tvm_enable();
-    pstore_mark("TAS-C-2\n");
+    pmsg_write("CHARLOTTE-C-2\n");
     fb_fill(FB_LCD, 0xFFFFFFFFU);
-    pstore_mark("TAS-C-FB1\n");
+    pmsg_write("CHARLOTTE-C-FB1\n");
     fb_fill(FB_CANVAS, 0xFFFFFFFFU);
-    pstore_mark("TAS-C-FB2\n");
-    pstore_mark("TAS-C-DONE\n");
+    pmsg_write("CHARLOTTE-C-FB2\n");
+    pmsg_write("CHARLOTTE-C-DONE\n");
 }
