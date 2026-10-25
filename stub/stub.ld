@@ -5,20 +5,20 @@ SECTIONS
   . = 0;
 
   .text : {
-    *(.text*)
+    KEEP(*(.text*))
   }
 
   .rodata : {
-    *(.rodata*)
+    KEEP(*(.rodata*))
   }
 
   .data : {
-    *(.data*)
+    KEEP(*(.data*))
   }
 
   .bss : {
-    *(.bss*)
-    *(COMMON)
+    KEEP(*(.bss*))
+    KEEP(*(COMMON))
   }
 
   . = ALIGN(8);

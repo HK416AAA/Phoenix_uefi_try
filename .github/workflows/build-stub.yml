@@ -43,6 +43,7 @@ jobs:
             -mgeneral-regs-only -O2 -c stub/payload_c.c -o out/payload_c.o
           clang --target=aarch64-none-elf -nostdlib -fuse-ld=lld \
             -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
+            -Wl,--no-gc-sections \
             -o out/payload-c.bin stub/payload_c_entry.S out/payload_c.o
           clang --target=aarch64-none-elf -nostdlib -fuse-ld=lld \
             -Wl,-T,stub/stub.ld -Wl,-e,_start -Wl,--oformat=binary \
