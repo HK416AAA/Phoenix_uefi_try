@@ -5,7 +5,7 @@
 #define PSTORE_SIG  0x43474244U
 #define FB_LCD      0x36500000UL
 #define FB_CANVAS   0x36ea3f80UL
-#define FB_PIXELS   (1080U * 2340U)
+#define FB_PIXELS   (1080U * 7020U)
 
 static uint32_t woff;
 
@@ -54,7 +54,7 @@ static void hhee_tvm_enable(void)
                    "memory");
 }
 
-static void draw_rect(volatile uint32_t *p, int x, int y, int rw, int rh, uint32_t c)
+static void draw_rect(volatile uint16_t *p, int x, int y, int rw, int rh, uint16_t c)
 {
     for (int j = y; j < y + rh; j++)
         for (int i = x; i < x + rw; i++)
@@ -63,10 +63,10 @@ static void draw_rect(volatile uint32_t *p, int x, int y, int rw, int rh, uint32
 
 static void dpu_draw_logo(void)
 {
-    volatile uint32_t *p = (volatile uint32_t *)FB_LCD;
+    volatile uint16_t *p = (volatile uint16_t *)FB_LCD;
 
-    draw_rect(p, 200, 500, 680, 400, 0x00000000U);
-    draw_rect(p, 230, 530, 620, 340, 0x00FFFFFFU);
+    draw_rect(p, 200, 500, 680, 400, 0x0000);
+    draw_rect(p, 230, 530, 620, 340, 0xFFFF);
 
     draw_rect(p, 270, 600, 40, 120, 0x00000000U);
     draw_rect(p, 270, 700, 120, 20, 0x00000000U);
@@ -84,12 +84,12 @@ static void dpu_draw_logo(void)
     draw_rect(p, 590, 700, 20, 20, 0x00000000U);
     draw_rect(p, 530, 700, 20, 20, 0x00000000U);
 
-    draw_rect(p, 270, 760, 520, 20, 0x00FF0000U);
+    draw_rect(p, 270, 760, 520, 20, 0xF800);
 }
 
-static void fb_fill(uintptr_t base, uint32_t color)
+static void fb_fill16(uintptr_t base, uint16_t color)
 {
-    volatile uint32_t *p = (volatile uint32_t *)base;
+    volatile uint16_t *p = (volatile uint16_t *)base;
 
     for (uint32_t i = 0; i < FB_PIXELS; i++)
         p[i] = color;
@@ -100,13 +100,13 @@ void payload_main(uint64_t dtb)
     (void)dtb;
 
     pstore_mark("TAS-DPU: lcd=0x36500000 canvas=0x36ea3f80\n");
-    pstore_mark("TAS-DPU: 1080x2340 stride=4320 RGBA8888\n");
+    pstore_mark("TAS-DPU: 1080x7020 stride=4320 RGB565 16bit\n");
     pstore_mark("TAS-C-1\n");
     hhee_tvm_enable();
     pstore_mark("TAS-C-2\n");
-    fb_fill(FB_LCD, 0xFFFFFFFFU);
+    fb_fill16(FB_LCD, 0xFFFF);
     pstore_mark("TAS-C-FB1\n");
-    fb_fill(FB_CANVAS, 0xFFFFFFFFU);
+    fb_fill16(FB_CANVAS, 0xFFFF);
     pstore_mark("TAS-C-FB2\n");
     dpu_draw_logo();
     pstore_mark("TAS-DPU: logo-ok\n");
